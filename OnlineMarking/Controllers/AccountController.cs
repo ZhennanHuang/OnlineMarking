@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using OnlineMarking.Models;
+using System.Collections.Generic;
 
 namespace OnlineMarking.Controllers
 {
@@ -17,9 +18,10 @@ namespace OnlineMarking.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
-
+        ApplicationDbContext context;
         public AccountController()
         {
+            context = new ApplicationDbContext();
         }
 
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
@@ -134,16 +136,22 @@ namespace OnlineMarking.Controllers
             }
         }
 
+
+       
         //
         // GET: /Account/Register
         [AllowAnonymous]
         public ActionResult Register()
         {
+            
+            IEnumerable<SelectListItem> basetypes = context.Roles.Select(b => new SelectListItem { Value = b.Name, Text = b.Name });
+            ViewData["Name"] = new SelectList(basetypes, "Value", "Text");
             return View();
         }
 
         //
         // POST: /Account/Register
+        
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -155,19 +163,27 @@ namespace OnlineMarking.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
+                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
+                    await this.UserManager.AddToRoleAsync(user.Id, model.UserRoles);
                     return RedirectToAction("Index", "Home");
                 }
+
+                IEnumerable<SelectListItem> basetypes = context.Roles.Select(b => new SelectListItem { Value = b.Name, Text = b.Name });
+                ViewData["Name"] = new SelectList(basetypes, "Value", "Text");
                 AddErrors(result);
             }
-
+            else
+            {
+                IEnumerable<SelectListItem> basetypes = context.Roles.Select(b => new SelectListItem { Value = b.Name, Text = b.Name });
+                ViewData["Name"] = new SelectList(basetypes, "Value", "Text");
+            }
             // If we got this far, something failed, redisplay form
             return View(model);
         }
