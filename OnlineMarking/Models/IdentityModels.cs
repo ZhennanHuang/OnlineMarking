@@ -24,7 +24,7 @@ namespace OnlineMarking.Models
             : base("DefaultConnection", throwIfV1Schema: false)
         {
         }
-
+        public DbSet<Record> RecordDB { get; set; }
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();

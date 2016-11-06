@@ -1,7 +1,10 @@
-﻿
+﻿@model OnlineMarking.Models.Record
 @{
     ViewBag.Title = "Upload";
 }
-
+@using (Html.BeginForm("Upload", "Student", FormMethod.Post, new { enctype = "multipart/form-data" })) {
+    <input id="file" name="file" type="file" />
+    <input id="submit" type ="submit" value="upload" />
+}
 <h2>Upload</h2>
 
