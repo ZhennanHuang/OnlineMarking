@@ -14,7 +14,7 @@ namespace OnlineMarking.Controllers
         private ApplicationDbContext RContext;
         private DbSet<Record> RecordDB;
         private Record[] Records;
-        public StudentController(){
+        public StudentController() {
             RContext = new Models.ApplicationDbContext();
             RecordDB = RContext.RecordDB;
             Records = RecordDB.ToArray();
@@ -29,11 +29,17 @@ namespace OnlineMarking.Controllers
             if (file == null) {
                 return View("../Index");
             }
-            var path = Path.Combine(Request.MapPath("~/studentRecord"), Path.GetFileName(file.FileName));
+            var path = Path.Combine(Request.MapPath("~/studentRecord/" + User.Identity.Name), Path.GetFileName(file.FileName));
             try
             {
+                if (Directory.Exists(Server.MapPath("~/studentRecord/" + User.Identity.Name)) == false)
+                {
+                    Directory.CreateDirectory(Server.MapPath("~/studentRecord/" + User.Identity.Name));
+                }
                 file.SaveAs(path);
-                r.filePath = "../Upload/" + Path.GetFileName(file.FileName);
+                r.fileName = file.FileName;
+                r.studentName = User.Identity.Name;
+                r.filePath = path;  
                 RecordDB.Add(r);
                 RContext.SaveChanges();
                 return View();
@@ -41,12 +47,10 @@ namespace OnlineMarking.Controllers
             catch {
                 return View();
             }
-            
         }
         public ViewResult Result()
         {
-            return View();
+            return View(RecordDB.Find(User.Identity.Name));
         }
     }
-
 }

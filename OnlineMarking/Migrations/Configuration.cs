@@ -30,8 +30,7 @@ namespace OnlineMarking.Migrations
             //
             context.RecordDB.AddOrUpdate(i => i.filePath,
                 new Record {
-                    studentID = 1,
-                    teacherID = 1,
+                    studentName = "student one",
                     filePath = "/",
                     marks = 10
                 }

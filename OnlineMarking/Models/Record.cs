@@ -9,17 +9,17 @@ namespace OnlineMarking.Models
     public class Record
     {
         public int ID { get; set; }
-        public int studentID { get; set; }
-        public int teacherID { get; set; }
+        public string studentName { get; set; }
         public string filePath { get; set; }
+        public string fileName { get; set; }
         public int marks { get; set; }
     }
- 
-    /*public static class MyExtensionMethods
+
+    public static class MyExtensionMethods
     {
-        public static Record FindNumber(this IEnumerable<Record> record, int id)
+        public static Record Find(this IEnumerable<Record> record, string sName)
         {
-            return (from r in record where r.ID == id select r).First();
+            return (from r in record where r.studentName.Equals(sName) select r).First();
         }
-    }*/
+    }
 }
