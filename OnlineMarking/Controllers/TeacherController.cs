@@ -26,7 +26,7 @@ namespace OnlineMarking.Controllers
         {
             return View();
         }
-        public ActionResult RecordList() {
+        public ActionResult RecordList() {              //view all the record that uploaded by students
         
             if (User.Identity.IsAuthenticated)
             {
@@ -43,12 +43,12 @@ namespace OnlineMarking.Controllers
 
 
 
-        public ActionResult Mark()
+        public ActionResult Mark()      //the record detail and teachers are able to mark in this view
         {
             return View();
         }
 
-        public Boolean SorT()
+        public Boolean SorT()           //make sure the user is student or teacher
         {
             if (User.Identity.IsAuthenticated)
             {

@@ -15,26 +15,26 @@ namespace OnlineMarking.Controllers
     {
         private ApplicationDbContext RContext;
         private DbSet<Record> RecordDB;
-        private Record[] Records;
+        private Record[] Records;                           
         public StudentController() {
             RContext = new Models.ApplicationDbContext();
-            RecordDB = RContext.RecordDB;
-            Records = RecordDB.ToArray();
+            RecordDB = RContext.RecordDB;                   
+            Records = RecordDB.ToArray();                   //all records
         }
         // GET: Student
-        public ActionResult Upload()
+        public ActionResult Upload()                        //visit the upload view
         {
-            if (User.Identity.IsAuthenticated)
+            if (User.Identity.IsAuthenticated)              //user should login before visit upload view
                 return View();
             else
                 return RedirectToAction("Login","Account");
         }
         [HttpPost]
-        public ActionResult Upload(Record r, HttpPostedFileBase file) {
+        public ActionResult Upload(Record r, HttpPostedFileBase file) {     //submit the upload information
 
-            if (User.Identity.IsAuthenticated)
+            if (User.Identity.IsAuthenticated)              //user should login first
             {
-                if (SorT())
+                if (SorT())                                 //if user is a student
                 {
                     if (file == null)
                     {
@@ -67,12 +67,12 @@ namespace OnlineMarking.Controllers
             else
                 return RedirectToAction("Login","Account");
         }
-        public ActionResult Result()
+        public ActionResult Result()                    //visit the view of the results of student themselves
         {
             if (User.Identity.IsAuthenticated)
             {
                 Record[] rr;
-                if (SorT())
+                if (SorT())                             //if the user is a student
                     rr = RecordDB.FindByName(User.Identity.Name);
                 else
                     rr = RecordDB.ToArray();
@@ -81,7 +81,7 @@ namespace OnlineMarking.Controllers
             else
                 return RedirectToAction("Login", "Account");
         }
-        public Boolean SorT()
+        public Boolean SorT()                           //make sure the user is student or teacher
         {
             if (User.Identity.IsAuthenticated)
             {
