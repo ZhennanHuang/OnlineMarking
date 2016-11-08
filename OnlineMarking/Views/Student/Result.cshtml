@@ -3,9 +3,13 @@
     ViewBag.Title = "Result";
 }
 <table>
-    <tr><th>student name</th><th>fileName</th><th>mark</th></tr>
+    <tr><th>student</th><th>fileName</th><th>mark</th></tr>
     @foreach (var r in @Model)
     {
-        <tr><td>@r.studentName</td><td>@r.fileName</td><td>@r.marks</td></tr>
+        <tr><td>@r.studentName</td><td>@r.fileName</td>
+        @if (r.marks == 0)
+        {<td> No Result; </td>}
+        else
+        {<td>  r.marks; </td>} </tr>
     }
 </table>

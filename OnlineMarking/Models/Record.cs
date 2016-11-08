@@ -17,9 +17,9 @@ namespace OnlineMarking.Models
 
     public static class MyExtensionMethods
     {
-        public static Record Find(this IEnumerable<Record> record, string sName)
+        public static Record[] FindByName(this IEnumerable<Record> record, string sName)
         {
-            return (from r in record where r.studentName.Equals(sName) select r).First();
+            return ((from r in record where r.studentName.Equals(sName) select r).ToArray());
         }
     }
 }

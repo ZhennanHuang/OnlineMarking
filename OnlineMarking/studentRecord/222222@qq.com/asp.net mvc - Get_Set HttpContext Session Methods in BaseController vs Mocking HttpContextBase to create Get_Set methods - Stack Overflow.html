@@ -1,0 +1,1485 @@
+<!DOCTYPE html>
+<!-- saved from url=(0123)http://stackoverflow.com/questions/6314626/get-set-httpcontext-session-methods-in-basecontroller-vs-mocking-httpcontextbase -->
+<html itemscope="" itemtype="http://schema.org/QAPage"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>asp.net mvc - Get/Set HttpContext Session Methods in BaseController vs Mocking HttpContextBase to create Get/Set methods - Stack Overflow</title>
+    <link rel="shortcut icon" href="http://cdn.sstatic.net/Sites/stackoverflow/img/favicon.ico?v=4f32ecc8f43d">
+    <link rel="apple-touch-icon image_src" href="http://cdn.sstatic.net/Sites/stackoverflow/img/apple-touch-icon.png?v=c78bd457575a">
+    <link rel="search" type="application/opensearchdescription+xml" title="Stack Overflow" href="http://stackoverflow.com/opensearch.xml">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:domain" content="stackoverflow.com">
+    <meta property="og:type" content="website">
+
+    <meta property="og:image" itemprop="image primaryImageOfPage" content="http://cdn.sstatic.net/Sites/stackoverflow/img/apple-touch-icon@2.png?v=73d79a89bded&amp;a">
+    <meta name="twitter:title" property="og:title" itemprop="title name" content="Get/Set HttpContext Session Methods in BaseController vs Mocking HttpContextBase to create Get/Set methods">
+    <meta name="twitter:description" property="og:description" itemprop="description" content="I created Get/Set HttpContext Session Methods in BaseController class and also Mocked HttpContextBase and created Get/Set methods.
+
+Which is the best way to use it.
+
+    HomeController : BaseContro...">
+    <meta property="og:url" content="http://stackoverflow.com/questions/6314626/get-set-httpcontext-session-methods-in-basecontroller-vs-mocking-httpcontextbase">
+    <link rel="canonical" href="http://stackoverflow.com/questions/6314626/get-set-httpcontext-session-methods-in-basecontroller-vs-mocking-httpcontextbase">
+
+    
+    
+    <script type="text/javascript" async="" src="./asp.net mvc - Get_Set HttpContext Session Methods in BaseController vs Mocking HttpContextBase to create Get_Set methods - Stack Overflow_files/ados"></script><script async="" src="./asp.net mvc - Get_Set HttpContext Session Methods in BaseController vs Mocking HttpContextBase to create Get_Set methods - Stack Overflow_files/quant.js.download"></script><script async="" src="./asp.net mvc - Get_Set HttpContext Session Methods in BaseController vs Mocking HttpContextBase to create Get_Set methods - Stack Overflow_files/beacon.js.download"></script><script async="" src="./asp.net mvc - Get_Set HttpContext Session Methods in BaseController vs Mocking HttpContextBase to create Get_Set methods - Stack Overflow_files/analytics.js.download"></script><script src="./asp.net mvc - Get_Set HttpContext Session Methods in BaseController vs Mocking HttpContextBase to create Get_Set methods - Stack Overflow_files/jquery.min.js.download"></script>
+    <script src="./asp.net mvc - Get_Set HttpContext Session Methods in BaseController vs Mocking HttpContextBase to create Get_Set methods - Stack Overflow_files/stub.en.js.download"></script>
+    <link rel="stylesheet" type="text/css" href="./asp.net mvc - Get_Set HttpContext Session Methods in BaseController vs Mocking HttpContextBase to create Get_Set methods - Stack Overflow_files/all.css">
+
+            <link rel="alternate" type="application/atom+xml" title="Feed for question &#39;Get/Set HttpContext Session Methods in BaseController vs Mocking HttpContextBase to create Get/Set methods&#39;" href="http://stackoverflow.com/feeds/question/6314626">
+            <meta name="twitter:app:country" content="US">
+            <meta name="twitter:app:name:iphone" content="Stack Exchange iOS">
+            <meta name="twitter:app:id:iphone" content="871299723">
+            <meta name="twitter:app:url:iphone" content="se-zaphod://stackoverflow.com/questions/6314626/get-set-httpcontext-session-methods-in-basecontroller-vs-mocking-httpcontextbase">
+            <meta name="twitter:app:name:ipad" content="Stack Exchange iOS">
+            <meta name="twitter:app:id:ipad" content="871299723">
+            <meta name="twitter:app:url:ipad" content="se-zaphod://stackoverflow.com/questions/6314626/get-set-httpcontext-session-methods-in-basecontroller-vs-mocking-httpcontextbase">
+            <meta name="twitter:app:name:googleplay" content="Stack Exchange Android">
+            <meta name="twitter:app:url:googleplay" content="http://stackoverflow.com/questions/6314626/get-set-httpcontext-session-methods-in-basecontroller-vs-mocking-httpcontextbase">
+            <meta name="twitter:app:id:googleplay" content="com.stackexchange.marvin">
+        <script>
+        
+            StackExchange.ready(function () {
+                    
+                    StackExchange.using("snippets", function () {
+                        StackExchange.snippets.initSnippetRenderer();
+                    });
+                    
+
+                StackExchange.using("postValidation", function () {
+                    StackExchange.postValidation.initOnBlurAndSubmit($('#post-form'), 2, 'answer');
+                });
+
+                
+                StackExchange.question.init({showAnswerHelp:true,totalCommentCount:0,shownCommentCount:0,highlightColor:'#F4A83D',backgroundColor:'#FFF',questionId:6314626});
+
+                styleCode();
+
+                    StackExchange.realtime.subscribeToQuestion('1', '6314626');
+                                                                    StackExchange.using("gps", function () { StackExchange.gps.trackOutboundClicks('#content', '.post-text'); });
+
+            });
+        </script>
+
+
+    <script>
+        StackExchange.init({"locale":"en","stackAuthUrl":"https://stackauth.com","networkMetaHostname":"meta.stackexchange.com","serverTime":1478622084,"routeName":"Questions/Show","site":{"name":"Stack Overflow","description":"Q&A for professional and enthusiast programmers","isNoticesTabEnabled":true,"recaptchaPublicKey":"6LdchgIAAAAAAJwGpIzRQSOFaO0pU6s44Xt8aTwc","recaptchaAudioLang":"en","enableNewTagCreationWarning":true,"insertSpaceAfterNameTabCompletion":false,"id":1,"enableInsertDocLinkDialog":true,"enableSocialMediaInSharePopup":true},"user":{"fkey":"133255154f4b488e87b907d9f3a0bdcf","rep":0,"isAnonymous":true,"isAnonymousNetworkWide":true,"ab":{"be_nice_anons_edit":{"v":"a","g":1},"likelytoupmod":{"v":"DontShowNewsletterToAnonVoters:a","g":2}}},"events":{"postType":{"question":1},"postEditionSection":{"title":1,"body":2,"tags":3}}}, {"site":{"allowImageUploads":true,"enableUserHovercards":true,"styleCode":true,"enableNewLinkInsertDialog":true,"enableImgurHttps":true},"tags":{},"accounts":{"currentPasswordRequiredForChangingStackIdPassword":true},"flags":{"allowRetractingFlags":true},"snippets":{"snippetsEnabled":true,"renderDomain":"stacksnippets.net"},"markdown":{"asteriskIntraWordEmphasis":true}});
+        StackExchange.using.setCacheBreakers({"js/prettify-full.en.js":"1fa972846afd","js/moderator.en.js":"7419e582f858","js/full-anon.en.js":"3df8b485fcfd","js/full.en.js":"6ceeb53e7fd3","js/wmd.en.js":"20455d40ad4a","js/third-party/jquery.autocomplete.min.js":"e5f01e97f7c3","js/third-party/jquery.autocomplete.min.en.js":"","js/mobile.en.js":"c84249f40166","js/help.en.js":"c8004cc0095d","js/tageditor.en.js":"6411a03f27b9","js/tageditornew.en.js":"4ded320c7ed9","js/inline-tag-editing.en.js":"9298fc701b8e","js/revisions.en.js":"47de10a8358f","js/review.en.js":"79e5a9da2a9a","js/tagsuggestions.en.js":"d1ff9b84abe5","js/post-validation.en.js":"6b854f4cadcd","js/explore-qlist.en.js":"e71f14781288","js/events.en.js":"3e57d9b7f8c6","js/keyboard-shortcuts.en.js":"6e701b8dce82","js/external-editor.en.js":"235e80f649d7","js/external-editor.en.js":"235e80f649d7","js/snippet-javascript.en.js":"408e31a8bbb2","js/snippet-javascript-codemirror.en.js":"84dd1807a296"});
+        StackExchange.using("gps", function() {
+             StackExchange.gps.init(true);
+        });
+    </script>
+    
+        <script>
+            StackExchange.ready(function () {
+                $('#nav-tour').click(function () {
+                    StackExchange.using("gps", function() {
+                        StackExchange.gps.track("aboutpage.click", { aboutclick_location: "headermain" }, true);
+                    });
+                });
+            });
+        </script>
+<script async="" src="./asp.net mvc - Get_Set HttpContext Session Methods in BaseController vs Mocking HttpContextBase to create Get_Set methods - Stack Overflow_files/full-anon.en.js.download"></script><script async="" src="./asp.net mvc - Get_Set HttpContext Session Methods in BaseController vs Mocking HttpContextBase to create Get_Set methods - Stack Overflow_files/snippet-javascript.en.js.download"></script><script async="" src="./asp.net mvc - Get_Set HttpContext Session Methods in BaseController vs Mocking HttpContextBase to create Get_Set methods - Stack Overflow_files/post-validation.en.js.download"></script><script async="" src="./asp.net mvc - Get_Set HttpContext Session Methods in BaseController vs Mocking HttpContextBase to create Get_Set methods - Stack Overflow_files/prettify-full.en.js.download"></script><script async="" src="./asp.net mvc - Get_Set HttpContext Session Methods in BaseController vs Mocking HttpContextBase to create Get_Set methods - Stack Overflow_files/external-editor.en.js.download"></script><link type="text/css" rel="stylesheet" href="./asp.net mvc - Get_Set HttpContext Session Methods in BaseController vs Mocking HttpContextBase to create Get_Set methods - Stack Overflow_files/jobs-multi.min.css"><script async="" src="./asp.net mvc - Get_Set HttpContext Session Methods in BaseController vs Mocking HttpContextBase to create Get_Set methods - Stack Overflow_files/ados.js.download"></script><script type="text/javascript" src="./asp.net mvc - Get_Set HttpContext Session Methods in BaseController vs Mocking HttpContextBase to create Get_Set methods - Stack Overflow_files/adFeedback.js.download"></script><link rel="stylesheet" href="./asp.net mvc - Get_Set HttpContext Session Methods in BaseController vs Mocking HttpContextBase to create Get_Set methods - Stack Overflow_files/adFeedback.css"></head>
+<body class="question-page new-topbar">
+    <noscript>&lt;div id="noscript-padding"&gt;&lt;/div&gt;</noscript>
+            <script>(function () { var old = $.fn.contents; $.fn.contents = function () { try { return old.apply(this, arguments); } catch (e) { return $([]); } } })()</script>
+        
+
+
+
+
+    <div id="notify-container"></div>
+    <div id="custom-header"></div>
+
+
+
+
+
+<div class="topbar">
+    <div class="topbar-wrapper">
+
+        <div class="js-topbar-dialog-corral">
+
+
+    <div class="topbar-dialog siteSwitcher-dialog dno">
+        <div class="header">
+            <h3><a href="http://stackoverflow.com/">current community</a>
+            </h3>
+        </div>
+        <div class="modal-content current-site-container">
+            <ul class="current-site">
+                    <li>
+                            <div class="related-links">
+                    <a href="http://chat.stackoverflow.com/" class="js-gps-track" data-gps-track="site_switcher.click({ item_type:6 })">chat</a>
+            </div>
+
+
+
+
+    <a href="http://stackoverflow.com/" class="current-site-link site-link js-gps-track" data-id="1" data-gps-track="
+        site_switcher.click({ item_type:3 })">
+        <div class="site-icon favicon favicon-stackoverflow" title="Stack Overflow"></div>
+        Stack Overflow
+    </a>
+
+                    </li>
+                    <li class="related-site">
+                            <div class="L-shaped-icon-container">
+        <span class="L-shaped-icon"></span>
+    </div>
+
+                        
+
+
+
+    <a href="http://meta.stackoverflow.com/" class="site-link js-gps-track" data-id="552" data-gps-track="
+            site.switch({ target_site:552, item_type:3 }),
+        site_switcher.click({ item_type:4 })">
+        <div class="site-icon favicon favicon-stackoverflowmeta" title="Meta Stack Overflow"></div>
+        Meta Stack Overflow
+    </a>
+
+                    </li>
+            </ul>
+        </div>
+
+        <div class="header" id="your-communities-header">
+            <h3>
+your communities            </h3>
+
+        </div>
+        <div class="modal-content" id="your-communities-section">
+
+                <div class="call-to-login">
+<a href="https://stackoverflow.com/users/signup?ssrc=site_switcher&amp;returnurl=%2fusers%2fstory%2fcurrent&amp;amp;utm_source=stackoverflow.com&amp;amp;utm_medium=dev-story&amp;amp;utm_campaign=signup-redirect" class="login-link js-gps-track" data-gps-track="site_switcher.click({ item_type:10 })">Sign up</a> or <a href="https://stackoverflow.com/users/login?ssrc=site_switcher&amp;returnurl=http%3a%2f%2fstackoverflow.com%2fquestions%2f6314626%2fget-set-httpcontext-session-methods-in-basecontroller-vs-mocking-httpcontextbase" class="login-link js-gps-track" data-gps-track="site_switcher.click({ item_type:11 })">log in</a> to customize your list.
+                </div>
+        </div>
+
+        <div class="header">
+            <h3><a href="http://stackexchange.com/sites">more stack exchange communities</a>
+            </h3>
+            <a href="http://stackoverflow.blog/" class="fr">company blog</a>
+        </div>
+        <div class="modal-content">
+                <div class="child-content"></div>
+        </div>        
+    </div>
+        </div>
+
+        <div class="network-items">
+                <a href="http://stackexchange.com/" class="topbar-icon icon-site-switcher yes-hover js-site-switcher-button js-gps-track" data-gps-track="site_switcher.show" title="A list of all 162 Stack Exchange sites">
+                    <span class="hidden-text">Stack Exchange</span>
+                </a>
+
+    <a href="http://stackoverflow.com/questions/6314626/get-set-httpcontext-session-methods-in-basecontroller-vs-mocking-httpcontextbase#" class="topbar-icon icon-inbox yes-hover js-inbox-button" title="Recent inbox messages">
+        <span class="hidden-text">Inbox</span>
+        <span class="unread-count" style="display:none"></span>
+    </a>
+    <a href="http://stackoverflow.com/questions/6314626/get-set-httpcontext-session-methods-in-basecontroller-vs-mocking-httpcontextbase#" class="topbar-icon icon-achievements yes-hover js-achievements-button " data-unread-class="" title="Recent achievements: reputation, badges, and privileges earned">
+        <span class="hidden-text">Reputation and Badges</span>
+        <span class="unread-count" style="display:none">
+            
+        </span>
+    </a>
+        </div>
+
+        <div class="topbar-links">
+
+                <div class="links-container">
+                <span class="topbar-menu-links">
+                                    <a href="https://stackoverflow.com/users/signup?ssrc=head&amp;returnurl=%2fusers%2fstory%2fcurrent&amp;utm_source=stackoverflow.com&amp;utm_medium=dev-story&amp;utm_campaign=signup-redirect" class="login-link">sign up</a>
+                                <a href="https://stackoverflow.com/users/login?ssrc=head&amp;returnurl=http%3a%2f%2fstackoverflow.com%2fquestions%2f6314626%2fget-set-httpcontext-session-methods-in-basecontroller-vs-mocking-httpcontextbase" class="login-link">log in</a>
+
+                            <a href="http://stackoverflow.com/tour">tour</a>
+        <a href="http://stackoverflow.com/questions/6314626/get-set-httpcontext-session-methods-in-basecontroller-vs-mocking-httpcontextbase#" class="icon-help js-help-button" title="Help Center and other resources">
+            help
+            <span class="triangle"></span>
+        </a>
+    <div class="topbar-dialog help-dialog js-help-dialog dno">
+        <div class="modal-content">
+            <ul>
+                                    <li>
+                        <a href="http://stackoverflow.com/tour" class="js-gps-track" data-gps-track="help_popup.click({ item_type:1 })">
+                            Tour
+                            <span class="item-summary">
+                                Start here for a quick overview of the site
+                            </span>
+                        </a>
+                    </li>
+                <li>
+                    <a href="http://stackoverflow.com/help" class="js-gps-track" data-gps-track="help_popup.click({ item_type:4 })">
+                        Help Center
+                        <span class="item-summary">
+                            Detailed answers to any questions you might have
+                        </span>
+                    </a>
+                </li>
+                        <li>
+                            <a href="http://meta.stackoverflow.com/" class="js-gps-track" data-gps-track="help_popup.click({ item_type:2 })">
+                                Meta
+                                <span class="item-summary">
+                                    Discuss the workings and policies of this site
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="http://stackoverflow.com/company/about" class="js-gps-track" data-gps-track="help_popup.click({ item_type:6 })">
+                                About Us
+                                <span class="item-summary">
+                                    Learn more about Stack Overflow the company
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="http://business.stackoverflow.com/?ref=topbar_help" class="js-gps-track" data-gps-track="help_popup.click({ item_type:7 })">
+                                Business
+                                <span class="item-summary">
+                                    Learn more about hiring developers or posting ads with us
+                                </span>
+                            </a>
+                        </li>
+            </ul>
+        </div>
+    </div>
+                                            </span>
+                </div>
+
+            <div class="search-container">
+                <form id="search" action="http://stackoverflow.com/search" method="get" autocomplete="off">
+                    <input name="q" type="text" placeholder="Search Q&amp;A" value="" tabindex="1" autocomplete="off" maxlength="240">
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+    <script>
+        StackExchange.ready(function() { StackExchange.topbar.init(); });
+    </script>
+
+    <div class="container">
+        <div id="header">
+            <br class="cbt">
+            <div id="hlogo">
+                <a href="http://stackoverflow.com/">
+                    Stack Overflow
+                </a>
+            </div>
+            <div id="hmenus">
+                <div class="nav mainnavs">
+                    <ul>
+                            <li class="youarehere">
+        <a id="nav-questions" href="http://stackoverflow.com/questions" class="js-gps-track" data-gps-track="top_nav.click({is_current:true, location:3, destination:1})">
+        Questions
+        </a>
+    </li>
+
+    <li>
+        <a id="nav-jobs" href="http://stackoverflow.com/jobs?med=site-ui&amp;ref=jobs-tab" class="js-gps-track" data-gps-track="top_nav.click({is_current:false, location:3, destination:6})">
+        Jobs
+        </a>
+    </li>
+                            <li>
+        <a id="nav-docs" href="http://stackoverflow.com/documentation" class="js-gps-track" data-gps-track="top_nav.click({is_current:false, location:3, destination:7})">
+        Documentation
+        </a>
+    </li>
+                            <li>
+        <a id="nav-tags" href="http://stackoverflow.com/tags" class="js-gps-track" data-gps-track="top_nav.click({is_current:false, location:3, destination:2})">
+        Tags
+        </a>
+    </li>
+
+                            <li>
+        <a id="nav-users" href="http://stackoverflow.com/users" class="js-gps-track" data-gps-track="top_nav.click({is_current:false, location:3, destination:3})">
+        Users
+        </a>
+    </li>
+
+                            <li>
+        <a id="nav-badges" href="http://stackoverflow.com/help/badges" class="js-gps-track" data-gps-track="top_nav.click({is_current:false, location:3, destination:4})">
+        Badges
+        </a>
+    </li>
+
+                    </ul>
+                </div>
+                <div class="nav askquestion">
+                    <ul>
+                        <li>
+                            <a id="nav-askquestion" href="http://stackoverflow.com/questions/ask">Ask Question</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+
+
+
+        <div id="content" class="snippet-hidden">
+            
+
+<div itemscope="" itemtype="http://schema.org/Question">
+    <link itemprop="image" href="http://cdn.sstatic.net/Sites/stackoverflow/img/apple-touch-icon.png?v=c78bd457575a">
+
+
+    <div id="herobox" class="alternate">
+        <div class="test"></div>
+            <div id="close">
+                <a title="click to minimize"><span>x</span> Dismiss</a>
+            </div>
+        <div class="content">
+            <b>Join the Stack Overflow Community</b>
+            <div class="separator"></div>
+            <div class="blurb">
+                Stack Overflow is a community of 6.3 million programmers, just like you, helping each other.
+                    <br>
+Join them; it only takes a minute:                    <br>
+            </div>
+            <a href="http://stackoverflow.com/users/signup?ssrc=hero&amp;returnurl=http%3a%2f%2fstackoverflow.com%2fquestions%2f6314626%2fget-set-httpcontext-session-methods-in-basecontroller-vs-mocking-httpcontextbase" id="tell-me-more" class="button">Sign up</a>
+        </div>
+    </div>
+<script>
+    StackExchange.ready(function () {
+
+        var location = 0;
+        if ($("body").hasClass("questions-page")) {
+            location = 1;;
+        } else if ($("body").hasClass("question-page")) {
+            location = 1;;
+        } else if ($("body").hasClass("faq-page")) {
+            location = 5;;
+        } else if ($("body").hasClass("home-page")) {
+            location = 3;;
+        }
+
+        $('#tell-me-more').click(function () {
+            StackExchange.using("gps", function () {
+                StackExchange.gps.track("hero.action", { hero_action_type: 'cta', location: location }, true);
+            });
+        });
+        $('#herobox #close').click(function () {
+            StackExchange.using("gps", function () {
+                StackExchange.gps.track("hero.action", { hero_action_type: "minimize", location: location }, true);
+            });
+            $.cookie("hero", "mini", { path: "/", expires: 365 });
+            $.ajax({
+                url: "/hero-mini",
+                success: function (data) {
+                    $("#herobox").fadeOut("fast", function () {
+                        $("#herobox").replaceWith(data);
+                        $("#herobox-mini").fadeIn("fast");
+                    });
+                }
+            });
+            return false;
+        });
+    });
+
+</script>			<div id="question-header">
+                <h1 itemprop="name"><a href="http://stackoverflow.com/questions/6314626/get-set-httpcontext-session-methods-in-basecontroller-vs-mocking-httpcontextbase" class="question-hyperlink">Get/Set HttpContext Session Methods in BaseController vs Mocking HttpContextBase to create Get/Set methods</a></h1>
+		</div>
+			<div id="mainbar">
+
+			
+
+<div class="question" data-questionid="6314626" id="question">
+
+    <div class="everyonelovesstackoverflow adzerk-vote" id="clc-tlb"><a href="http://engine.adzerk.net/r?e=eyJhdiI6MTU2MTY1LCJhdCI6NCwiYnQiOjAsImNtIjo0OTA2OTYsImNoIjoxMTc4LCJjayI6e30sImNyIjoxNzExNDc5LCJkaSI6ImMyOTJiMmZjYTk3ZjQ1ODViZjY0OTVlODE0ODViNDQyIiwiZG0iOjEsImZjIjoyMDMzNDE0LCJmbCI6MjQ1MzA3NSwiaXAiOiIxNTIuNzguOTQuMTc1Iiwia3ciOiJhc3AubmV0LW12YyxzZXNzaW9uLGh0dHBjb250ZXh0IiwibWsiOiJhc3AubmV0LW12YyIsIm53IjoyMiwicGMiOjYuNSwiZWMiOjYuNSwicHIiOjc2NSwicnQiOjIsInJmIjoiaHR0cDovL2Jsb2cuY3Nkbi5uZXQvemdqc2N6d2ovYXJ0aWNsZS9kZXRhaWxzLzc5MDY0MjIiLCJzdCI6ODI3NywidWsiOiJ1ZTEtZGI1YmU1ZTU0MmM2NDM4ZGI5ZGNlZWRmODc3YzRiNzgiLCJ6biI6NDMsInRzIjoxNDc4NjIyMDg0OTgwLCJiZiI6dHJ1ZSwicG4iOiJjbGMtdGxiIiwidXIiOiJodHRwOi8vc3RhY2tvdmVyZmxvdy5jb20vam9icy9jb21wYW5pZXMvY29nbml6YW50LXRlY2hub2xvZ3ktc29sdXRpb25zLXVrLWx0ZCJ9&amp;s=n7RfNswS6zlssONLLPx3lG-P2pc" rel="nofollow" target="_blank" title=""><img src="./asp.net mvc - Get_Set HttpContext Session Methods in BaseController vs Mocking HttpContextBase to create Get_Set methods - Stack Overflow_files/18a1a25370ac433ca15ad8ed773d88b4.jpg" title="" alt="" border="0" width="728" height="90"></a><div class="adzerk-vote-controls" style="display:none;"><div class="adzerk-vote-option adzerk-vote-up"><div class="adzerk-vote-icon"></div></div><div class="adzerk-vote-option adzerk-vote-down"><div class="adzerk-vote-icon"></div></div></div><div class="adzerk-vote-survey" style="display:none;"><form><span>No problem. We won't show you that ad again. Why didn't you like it?</span><ul><li><label><input type="radio" value="12" name="downvoteReason">Uninteresting</label></li><li><label><input type="radio" value="13" name="downvoteReason">Misleading</label></li><li><label><input type="radio" value="14" name="downvoteReason">Offensive</label></li><li><label><input type="radio" value="15" name="downvoteReason">Repetitive</label></li><li><label><input type="radio" value="16" name="downvoteReason">Other</label></li></ul><a href="http://stackoverflow.com/questions/6314626/get-set-httpcontext-session-methods-in-basecontroller-vs-mocking-httpcontextbase#" class="adzerk-vote-cancel">Oops! I didn't mean to do this.</a></form></div><img height="0px" width="0px" border="0" style="position:absolute;" src="./asp.net mvc - Get_Set HttpContext Session Methods in BaseController vs Mocking HttpContextBase to create Get_Set methods - Stack Overflow_files/i.gif"></div>    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+        <input type="hidden" name="_id_" value="6314626">
+        <a class="vote-up-off" title="This question shows research effort; it is useful and clear">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">5</span>
+        <a class="vote-down-off" title="This question does not show any research effort; it is unclear or not useful">down vote</a>
+
+        <a class="star-off" href="http://stackoverflow.com/questions/6314626/get-set-httpcontext-session-methods-in-basecontroller-vs-mocking-httpcontextbase#">favorite</a>
+        <div class="favoritecount"><b>8</b></div>
+
+
+</div>
+
+            </td>
+            
+<td class="postcell">
+<div>
+    <div class="post-text" itemprop="text">
+
+<h2>I created Get/Set HttpContext Session Methods in BaseController class and also Mocked HttpContextBase and created Get/Set methods.</h2>
+
+<p>Which is the best way to use it.</p>
+
+<pre class="default prettyprint prettyprinted"><code><span class="pln">    </span><span class="typ">HomeController</span><span class="pln"> </span><span class="pun">:</span><span class="pln"> </span><span class="typ">BaseController</span><span class="pln">
+    </span><span class="pun">{</span><span class="pln">
+        </span><span class="kwd">var</span><span class="pln"> value1 </span><span class="pun">=</span><span class="pln"> </span><span class="typ">GetDataFromSession</span><span class="pun">(</span><span class="str">"key1"</span><span class="pun">)</span><span class="pln"> 
+        </span><span class="typ">SetDataInSession</span><span class="pun">(</span><span class="str">"key2"</span><span class="pun">,(</span><span class="kwd">object</span><span class="pun">)</span><span class="str">"key2Value"</span><span class="pun">);</span><span class="pln">
+
+        </span><span class="typ">Or</span><span class="pln">
+
+        </span><span class="kwd">var</span><span class="pln"> value2 </span><span class="pun">=</span><span class="pln"> </span><span class="typ">SessionWrapper</span><span class="pun">.</span><span class="typ">GetFromSession</span><span class="pun">(</span><span class="str">"key3"</span><span class="pun">);</span><span class="pln">
+        </span><span class="typ">GetFromSession</span><span class="pun">.</span><span class="typ">SetDataInSession</span><span class="pun">(</span><span class="str">"key4"</span><span class="pun">,(</span><span class="kwd">object</span><span class="pun">)</span><span class="str">"key4Value"</span><span class="pun">);</span><span class="pln">
+    </span><span class="pun">}</span></code></pre>
+
+<hr>
+
+<pre class="default prettyprint prettyprinted"><code><span class="pln">   </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">class</span><span class="pln"> </span><span class="typ">BaseController</span><span class="pln"> </span><span class="pun">:</span><span class="pln"> </span><span class="typ">Controller</span><span class="pln">
+   </span><span class="pun">{</span><span class="pln">
+       </span><span class="kwd">public</span><span class="pln">  T </span><span class="typ">GetDataFromSession</span><span class="pun">&lt;</span><span class="pln">T</span><span class="pun">&gt;(</span><span class="kwd">string</span><span class="pln"> key</span><span class="pun">)</span><span class="pln">
+       </span><span class="pun">{</span><span class="pln">
+          </span><span class="kwd">return</span><span class="pln"> </span><span class="pun">(</span><span class="pln">T</span><span class="pun">)</span><span class="pln"> </span><span class="typ">HttpContext</span><span class="pun">.</span><span class="typ">Session</span><span class="pun">[</span><span class="pln">key</span><span class="pun">];</span><span class="pln">
+       </span><span class="pun">}</span><span class="pln">
+
+       </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> </span><span class="typ">SetDataInSession</span><span class="pun">(</span><span class="kwd">string</span><span class="pln"> key</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">object</span><span class="pln"> value</span><span class="pun">)</span><span class="pln">
+       </span><span class="pun">{</span><span class="pln">
+          </span><span class="typ">HttpContext</span><span class="pun">.</span><span class="typ">Session</span><span class="pun">[</span><span class="pln">key</span><span class="pun">]</span><span class="pln"> </span><span class="pun">=</span><span class="pln"> value</span><span class="pun">;</span><span class="pln">
+       </span><span class="pun">}</span><span class="pln">
+   </span><span class="pun">}</span></code></pre>
+
+<h2> Or</h2>
+
+<pre class="default prettyprint prettyprinted"><code><span class="pln">  </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">class</span><span class="pln"> </span><span class="typ">BaseController</span><span class="pln"> </span><span class="pun">:</span><span class="pln"> </span><span class="typ">Controller</span><span class="pln">
+  </span><span class="pun">{</span><span class="pln">
+     </span><span class="kwd">public</span><span class="pln"> </span><span class="typ">ISessionWrapper</span><span class="pln"> </span><span class="typ">SessionWrapper</span><span class="pln"> </span><span class="pun">{</span><span class="pln"> </span><span class="kwd">get</span><span class="pun">;</span><span class="pln"> </span><span class="kwd">set</span><span class="pun">;</span><span class="pln"> </span><span class="pun">}</span><span class="pln">
+
+     </span><span class="kwd">public</span><span class="pln"> </span><span class="typ">BaseController</span><span class="pun">()</span><span class="pln">
+     </span><span class="pun">{</span><span class="pln">
+       </span><span class="typ">SessionWrapper</span><span class="pln"> </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">HttpContextSessionWrapper</span><span class="pun">();</span><span class="pln">
+     </span><span class="pun">}</span><span class="pln">
+  </span><span class="pun">}</span><span class="pln">
+
+  </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">interface</span><span class="pln"> </span><span class="typ">ISessionWrapper</span><span class="pln">
+  </span><span class="pun">{</span><span class="pln">
+     T </span><span class="typ">GetFromSession</span><span class="pun">&lt;</span><span class="pln">T</span><span class="pun">&gt;(</span><span class="kwd">string</span><span class="pln"> key</span><span class="pun">);</span><span class="pln">
+   </span><span class="kwd">void</span><span class="pln">    </span><span class="typ">SetInSession</span><span class="pun">(</span><span class="kwd">string</span><span class="pln"> key</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">object</span><span class="pln"> value</span><span class="pun">);</span><span class="pln">
+  </span><span class="pun">}</span><span class="pln">
+
+  </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">class</span><span class="pln"> </span><span class="typ">HttpContextSessionWrapper</span><span class="pln"> </span><span class="pun">:</span><span class="pln"> </span><span class="typ">ISessionWrapper</span><span class="pln">
+  </span><span class="pun">{</span><span class="pln">
+     </span><span class="kwd">public</span><span class="pln">  T </span><span class="typ">GetFromSession</span><span class="pun">&lt;</span><span class="pln">T</span><span class="pun">&gt;(</span><span class="kwd">string</span><span class="pln"> key</span><span class="pun">)</span><span class="pln">
+     </span><span class="pun">{</span><span class="pln">
+        </span><span class="kwd">return</span><span class="pln"> </span><span class="pun">(</span><span class="pln">T</span><span class="pun">)</span><span class="pln"> </span><span class="typ">HttpContext</span><span class="pun">.</span><span class="typ">Current</span><span class="pun">.</span><span class="typ">Session</span><span class="pun">[</span><span class="pln">key</span><span class="pun">];</span><span class="pln">
+     </span><span class="pun">}</span><span class="pln">
+
+     </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> </span><span class="typ">SetInSession</span><span class="pun">(</span><span class="kwd">string</span><span class="pln"> key</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">object</span><span class="pln"> value</span><span class="pun">)</span><span class="pln">
+     </span><span class="pun">{</span><span class="pln">
+         </span><span class="typ">HttpContext</span><span class="pun">.</span><span class="typ">Current</span><span class="pun">.</span><span class="typ">Session</span><span class="pun">[</span><span class="pln">key</span><span class="pun">]</span><span class="pln"> </span><span class="pun">=</span><span class="pln"> value</span><span class="pun">;</span><span class="pln">
+     </span><span class="pun">}</span><span class="pln">
+  </span><span class="pun">}</span></code></pre>
+    </div>
+    <div class="post-taglist">
+        <a href="http://stackoverflow.com/questions/tagged/asp.net-mvc" class="post-tag js-gps-track" title="show questions tagged &#39;asp.net-mvc&#39;" rel="tag">asp.net-mvc</a> <a href="http://stackoverflow.com/questions/tagged/session" class="post-tag js-gps-track" title="show questions tagged &#39;session&#39;" rel="tag">session</a> <a href="http://stackoverflow.com/questions/tagged/httpcontext" class="post-tag js-gps-track" title="show questions tagged &#39;httpcontext&#39;" rel="tag">httpcontext</a> 
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://stackoverflow.com/q/6314626" title="short permalink to this question" class="short-link" id="link-post-6314626">share</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/6314626/edit" class="suggest-edit-post" title="">improve this question</a></div>        
+    </td>
+    <td align="right" class="post-signature">
+<div class="user-info ">
+    <div class="user-action-time">
+        <a href="http://stackoverflow.com/posts/6314626/revisions" title="show all edits to this post">edited <span title="2014-01-10 11:27:09Z" class="relativetime">Jan 10 '14 at 11:27</span></a>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/196919/dimi"><div class="gravatar-wrapper-32"><img src="./asp.net mvc - Get_Set HttpContext Session Methods in BaseController vs Mocking HttpContextBase to create Get_Set methods - Stack Overflow_files/f12991084c85518565074d2176dee75d" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/196919/dimi">Dimi</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score 11,811" dir="ltr">11.8k</span><span title="37 gold badges"><span class="badge1"></span><span class="badgecount">37</span></span><span title="156 silver badges"><span class="badge2"></span><span class="badgecount">156</span></span><span title="281 bronze badges"><span class="badge3"></span><span class="badgecount">281</span></span>
+        </div>
+    </div>
+</div>    </td>
+    <td class="post-signature owner">
+        <div class="user-info user-hover">
+    <div class="user-action-time">
+        asked <span title="2011-06-11 07:07:50Z" class="relativetime">Jun 11 '11 at 7:07</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/503786/mangesh-pimpalkar"><div class="gravatar-wrapper-32"><img src="./asp.net mvc - Get_Set HttpContext Session Methods in BaseController vs Mocking HttpContextBase to create Get_Set methods - Stack Overflow_files/a7e1d9ab3c9ff396ae37d5143f00c324" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/503786/mangesh-pimpalkar">Mangesh Pimpalkar</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score " dir="ltr">2,933</span><span title="2 gold badges"><span class="badge1"></span><span class="badgecount">2</span></span><span title="19 silver badges"><span class="badge2"></span><span class="badgecount">19</span></span><span title="47 bronze badges"><span class="badge3"></span><span class="badgecount">47</span></span>
+        </div>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</div>
+</td>
+        </tr>
+                
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-6314626" class="comments  dno">
+		    <table>
+                <tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+                        <tr><td></td><td></td></tr>
+                </tbody>
+		    </table>
+	    </div>
+
+        <div id="comments-link-6314626" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid answering questions in comments.">add a comment</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="http://stackoverflow.com/questions/6314626/get-set-httpcontext-session-methods-in-basecontroller-vs-mocking-httpcontextbase#" onclick=""></a>
+        </div>         
+    </td>
+</tr>        </tbody></table>
+</div>
+
+			<div id="answers">
+
+				<a name="tab-top"></a>
+				<div id="answers-header">
+					<div class="subheader answers-subheader">
+						<h2>
+								2 Answers
+                                <span style="display:none;" itemprop="answerCount">2</span>
+						</h2>
+						<div>
+							<div id="tabs">
+        <a href="http://stackoverflow.com/questions/6314626/get-set-httpcontext-session-methods-in-basecontroller-vs-mocking-httpcontextbase?answertab=active#tab-top" data-nav-xhref="" title="Answers with the latest activity first" data-value="active" data-shortcut="A">
+            active</a>
+        <a href="http://stackoverflow.com/questions/6314626/get-set-httpcontext-session-methods-in-basecontroller-vs-mocking-httpcontextbase?answertab=oldest#tab-top" data-nav-xhref="" title="Answers in the order they were provided" data-value="oldest" data-shortcut="O">
+            oldest</a>
+        <a class="youarehere" href="http://stackoverflow.com/questions/6314626/get-set-httpcontext-session-methods-in-basecontroller-vs-mocking-httpcontextbase?answertab=votes#tab-top" data-nav-xhref="" title="Answers with the highest score first" data-value="votes" data-shortcut="V">
+            votes</a>
+</div>
+						</div>
+					</div>    
+				</div>    
+
+
+
+
+  
+<a name="6314897"></a>
+<div id="answer-6314897" class="answer accepted-answer" data-answerid="6314897" itemscope="" itemtype="http://schema.org/Answer" itemprop="acceptedAnswer">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+        <input type="hidden" name="_id_" value="6314897">
+        <a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">12</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+        <span class="vote-accepted-on load-accepted-answer-date" title="loading when this answer was accepted...">accepted</span>
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>The second one seems the best. Although I would probably write those two as extension methods to the <a href="http://msdn.microsoft.com/en-us/library/system.web.httpsessionstatebase.aspx">HttpSessionStateBase</a> instead of putting them into a base controller. Like this:</p>
+
+<pre class="default prettyprint prettyprinted"><code><span class="kwd">public</span><span class="pln"> </span><span class="kwd">static</span><span class="pln"> </span><span class="kwd">class</span><span class="pln"> </span><span class="typ">SessionExtensions</span><span class="pln">
+</span><span class="pun">{</span><span class="pln">
+    </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">static</span><span class="pln"> T </span><span class="typ">GetDataFromSession</span><span class="pun">&lt;</span><span class="pln">T</span><span class="pun">&gt;(</span><span class="kwd">this</span><span class="pln"> </span><span class="typ">HttpSessionStateBase</span><span class="pln"> session</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">string</span><span class="pln"> key</span><span class="pun">)</span><span class="pln">
+    </span><span class="pun">{</span><span class="pln">
+         </span><span class="kwd">return</span><span class="pln"> </span><span class="pun">(</span><span class="pln">T</span><span class="pun">)</span><span class="pln">session</span><span class="pun">[</span><span class="pln">key</span><span class="pun">];</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+
+    </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">static</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> </span><span class="typ">SetDataInSession</span><span class="pun">&lt;</span><span class="pln">T</span><span class="pun">&gt;(</span><span class="kwd">this</span><span class="pln"> </span><span class="typ">HttpSessionStateBase</span><span class="pln"> session</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">string</span><span class="pln"> key</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">object</span><span class="pln"> value</span><span class="pun">)</span><span class="pln">
+    </span><span class="pun">{</span><span class="pln">
+         session</span><span class="pun">[</span><span class="pln">key</span><span class="pun">]</span><span class="pln"> </span><span class="pun">=</span><span class="pln"> value</span><span class="pun">;</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+</span><span class="pun">}</span></code></pre>
+
+<p>and then inside the controllers, or helpers, or something that has an instance of <code>HttpSessionStateBase</code> use it:</p>
+
+<pre class="default prettyprint prettyprinted"><code><span class="kwd">public</span><span class="pln"> </span><span class="typ">ActionResult</span><span class="pln"> </span><span class="typ">Index</span><span class="pun">()</span><span class="pln">
+</span><span class="pun">{</span><span class="pln">
+    </span><span class="typ">Session</span><span class="pun">.</span><span class="typ">SetDataInSession</span><span class="pun">(</span><span class="str">"key1"</span><span class="pun">,</span><span class="pln"> </span><span class="str">"value1"</span><span class="pun">);</span><span class="pln">
+    </span><span class="kwd">string</span><span class="pln"> value </span><span class="pun">=</span><span class="pln"> </span><span class="typ">Session</span><span class="pun">.</span><span class="typ">GetDataFromSession</span><span class="str">&lt;string&gt;</span><span class="pun">(</span><span class="str">"key1"</span><span class="pun">);</span><span class="pln">
+    </span><span class="pun">...</span><span class="pln">
+</span><span class="pun">}</span></code></pre>
+
+<p>Writing session wrappers is useless in ASP.NET MVC as the <code>HttpSessionStateBase</code> provided by the framework is already an abstract class which could be easily mocked in unit tests.</p>
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://stackoverflow.com/a/6314897" title="short permalink to this answer" class="short-link" id="link-post-6314897">share</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/6314897/edit" class="suggest-edit-post" title="">improve this answer</a></div>                    </td>
+    <td align="right" class="post-signature">
+<div class="user-info user-hover">
+    <div class="user-action-time">
+        <a href="http://stackoverflow.com/posts/6314897/revisions" title="show all edits to this post">edited <span title="2012-05-26 20:46:56Z" class="relativetime">May 26 '12 at 20:46</span></a>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/534109/tieson-t"><div class="gravatar-wrapper-32"><img src="./asp.net mvc - Get_Set HttpContext Session Methods in BaseController vs Mocking HttpContextBase to create Get_Set methods - Stack Overflow_files/5990edb0cd45a208e3a938b410831e5c" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/534109/tieson-t">Tieson T.</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score 14,169" dir="ltr">14.2k</span><span title="3 gold badges"><span class="badge1"></span><span class="badgecount">3</span></span><span title="33 silver badges"><span class="badge2"></span><span class="badgecount">33</span></span><span title="65 bronze badges"><span class="badge3"></span><span class="badgecount">65</span></span>
+        </div>
+    </div>
+</div>    </td>
+            
+
+
+    <td align="right" class="post-signature">   
+       
+
+    <div class="user-info user-hover">
+    <div class="user-action-time">
+        answered <span title="2011-06-11 08:15:52Z" class="relativetime">Jun 11 '11 at 8:15</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/29407/darin-dimitrov"><div class="gravatar-wrapper-32"><img src="./asp.net mvc - Get_Set HttpContext Session Methods in BaseController vs Mocking HttpContextBase to create Get_Set methods - Stack Overflow_files/e3a181e9cdd4757a8b416d93878770c5" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/29407/darin-dimitrov">Darin Dimitrov</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score 694,840" dir="ltr">695k</span><span title="162 gold badges"><span class="badge1"></span><span class="badgecount">162</span></span><span title="2533 silver badges"><span class="badge2"></span><span class="badgecount">2533</span></span><span title="2390 bronze badges"><span class="badge3"></span><span class="badgecount">2390</span></span>
+        </div>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+        
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-6314897" class="comments ">
+		    <table>
+                <tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+
+
+    <tr id="comment-14530740" class="comment ">
+        <td>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">good answer, thank @Darin</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/900284/frank-myat-thu" title="1,693 reputation" class="comment-user">Frank Myat Thu</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="http://stackoverflow.com/questions/6314626/get-set-httpcontext-session-methods-in-basecontroller-vs-mocking-httpcontextbase#comment14530740_6314897"><span title="2012-06-19 07:21:19Z" class="relativetime-clean">Jun 19 '12 at 7:21</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+                </tbody>
+		    </table>
+	    </div>
+
+        <div id="comments-link-6314897" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”.">add a comment</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="http://stackoverflow.com/questions/6314626/get-set-httpcontext-session-methods-in-basecontroller-vs-mocking-httpcontextbase#" onclick=""></a>
+        </div>         
+    </td>
+</tr>    </tbody></table>
+</div>
+<div class="everyonelovesstackoverflow adzerk-vote" id="clc-mlb"><a href="http://engine.adzerk.net/r?e=eyJhdiI6NDE0LCJhdCI6NCwiYnQiOjAsImNtIjo0NzE0OTMsImNoIjoxMTc4LCJjayI6e30sImNyIjoxNjI3NzY5LCJkaSI6ImU1ZGQxZDg0ZTY1NzQ4ODJhODExMzc0YTRkZjU1OTY3IiwiZG0iOjEsImZjIjoxOTI0NDQ4LCJmbCI6MjE0MjMxMiwiaXAiOiIxNTIuNzguOTQuMTc1Iiwia3ciOiJhc3AubmV0LW12YyxzZXNzaW9uLGh0dHBjb250ZXh0IiwibnciOjIyLCJwYyI6MCwiZWMiOjAsInByIjoxNjA0LCJydCI6MSwicmYiOiJodHRwOi8vYmxvZy5jc2RuLm5ldC96Z2pzY3p3ai9hcnRpY2xlL2RldGFpbHMvNzkwNjQyMiIsInN0Ijo4Mjc3LCJ1ayI6InVlMS1kYjViZTVlNTQyYzY0MzhkYjlkY2VlZGY4NzdjNGI3OCIsInpuIjo0NCwidHMiOjE0Nzg2MjIwODQ5ODMsImJmIjp0cnVlLCJwbiI6ImNsYy1tbGIiLCJ1ciI6Imh0dHA6Ly9zdGFja292ZXJmbG93LmNvbS9qb2JzL3JlbW90ZT91dG1fc291cmNlPXdlYnNpdGUmdXRtX21lZGl1bT1iYW5uZXImdXRtX2NvbnRlbnQ9bGVhZGVyYm9hcmRfNCZ1dG1fY2FtcGFpZ249aG91c2VfYWRzX1JPU19TTyJ9&amp;s=LKoOzU35QFJvMibt8HzPBNA756E" rel="nofollow" target="_blank" title=""><img src="./asp.net mvc - Get_Set HttpContext Session Methods in BaseController vs Mocking HttpContextBase to create Get_Set methods - Stack Overflow_files/3ce23fa868ea401dac7e2fcfda5ec312.png" title="" alt="" border="0" width="728" height="90"></a><div class="adzerk-vote-controls" style="display:none;"><div class="adzerk-vote-option adzerk-vote-up"><div class="adzerk-vote-icon"></div></div><div class="adzerk-vote-option adzerk-vote-down"><div class="adzerk-vote-icon"></div></div></div><div class="adzerk-vote-survey" style="display:none;"><form><span>No problem. We won't show you that ad again. Why didn't you like it?</span><ul><li><label><input type="radio" value="12" name="downvoteReason">Uninteresting</label></li><li><label><input type="radio" value="13" name="downvoteReason">Misleading</label></li><li><label><input type="radio" value="14" name="downvoteReason">Offensive</label></li><li><label><input type="radio" value="15" name="downvoteReason">Repetitive</label></li><li><label><input type="radio" value="16" name="downvoteReason">Other</label></li></ul><a href="http://stackoverflow.com/questions/6314626/get-set-httpcontext-session-methods-in-basecontroller-vs-mocking-httpcontextbase#" class="adzerk-vote-cancel">Oops! I didn't mean to do this.</a></form></div><img height="0px" width="0px" border="0" style="position:absolute;" src="./asp.net mvc - Get_Set HttpContext Session Methods in BaseController vs Mocking HttpContextBase to create Get_Set methods - Stack Overflow_files/i(1).gif"></div>
+  
+<a name="6616059"></a>
+<div id="answer-6616059" class="answer" data-answerid="6616059" itemscope="" itemtype="http://schema.org/Answer">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+        <input type="hidden" name="_id_" value="6616059">
+        <a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">3</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>Just a little correction for the SetDataInSession method of the latest post. In my opinion, it´s a elegant solution! Thanks Darin Dimitrov.</p>
+
+<pre class="default prettyprint prettyprinted"><code><span class="kwd">public</span><span class="pln"> </span><span class="kwd">static</span><span class="pln"> </span><span class="kwd">class</span><span class="pln"> </span><span class="typ">SessionExtensions</span><span class="pln">
+</span><span class="pun">{</span><span class="pln">
+ </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">static</span><span class="pln"> T </span><span class="typ">GetDataFromSession</span><span class="pun">&lt;</span><span class="pln">T</span><span class="pun">&gt;(</span><span class="kwd">this</span><span class="pln"> </span><span class="typ">HttpSessionStateBase</span><span class="pln"> session</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">string</span><span class="pln"> key</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+            </span><span class="kwd">return</span><span class="pln"> </span><span class="pun">(</span><span class="pln">T</span><span class="pun">)</span><span class="pln">session</span><span class="pun">[</span><span class="pln">key</span><span class="pun">];</span><span class="pln">
+        </span><span class="pun">}</span><span class="pln">
+
+        </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">static</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> </span><span class="typ">SetDataInSession</span><span class="pun">(</span><span class="kwd">this</span><span class="pln"> </span><span class="typ">HttpSessionStateBase</span><span class="pln"> session</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">string</span><span class="pln"> key</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">object</span><span class="pln"> value</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+            session</span><span class="pun">[</span><span class="pln">key</span><span class="pun">]</span><span class="pln"> </span><span class="pun">=</span><span class="pln"> value</span><span class="pun">;</span><span class="pln">
+        </span><span class="pun">}</span><span class="pln">
+</span><span class="pun">}</span></code></pre>
+
+<ul>
+<li><p>First create this class, and after remember to refer its namespace in the Controller class that will call this methods.</p></li>
+<li><p>When getting the session value:</p>
+
+<p>string value = Session.GetDataFromSession("key1");</p></li>
+</ul>
+
+<p>The  must be a compatible type with the object persisted in the session.</p>
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://stackoverflow.com/a/6616059" title="short permalink to this answer" class="short-link" id="link-post-6616059">share</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/6616059/edit" class="suggest-edit-post" title="">improve this answer</a></div>                    </td>
+    <td align="right" class="post-signature">
+<div class="user-info ">
+    <div class="user-action-time">
+        <a href="http://stackoverflow.com/posts/6616059/revisions" title="show all edits to this post">edited <span title="2011-07-07 19:39:15Z" class="relativetime">Jul 7 '11 at 19:39</span></a>
+    </div>
+    <div class="user-gravatar32">
+        
+    </div>
+    <div class="user-details">
+        
+        <div class="-flair">
+            
+        </div>
+    </div>
+</div>    </td>
+            
+
+
+    <td align="right" class="post-signature">   
+       
+
+    <div class="user-info ">
+    <div class="user-action-time">
+        answered <span title="2011-07-07 19:33:56Z" class="relativetime">Jul 7 '11 at 19:33</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/834238/daniel-carvalho-melo"><div class="gravatar-wrapper-32"><img src="./asp.net mvc - Get_Set HttpContext Session Methods in BaseController vs Mocking HttpContextBase to create Get_Set methods - Stack Overflow_files/19dfb5d62bd54dc02aa29bece9a181bc" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/834238/daniel-carvalho-melo">Daniel Carvalho Melo</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score " dir="ltr">31</span><span title="2 bronze badges"><span class="badge3"></span><span class="badgecount">2</span></span>
+        </div>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+        
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-6616059" class="comments  dno">
+		    <table>
+                <tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+                        <tr><td></td><td></td></tr>
+                </tbody>
+		    </table>
+	    </div>
+
+        <div id="comments-link-6616059" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”.">add a comment</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="http://stackoverflow.com/questions/6314626/get-set-httpcontext-session-methods-in-basecontroller-vs-mocking-httpcontextbase#" onclick=""></a>
+        </div>         
+    </td>
+</tr>    </tbody></table>
+</div>
+									<a name="new-answer"></a>
+						<form id="post-form" action="http://stackoverflow.com/questions/6314626/answer/submit" method="post" class="post-form">
+						    <input type="hidden" id="post-id" value="6314626">
+                            <input type="hidden" id="qualityBanWarningShown" name="qualityBanWarningShown" value="false">
+                            <input type="hidden" name="referrer" value="http://blog.csdn.net/zgjsczwj/article/details/7906422">
+							<h2 class="space">Your Answer</h2>
+
+
+            <script>
+            StackExchange.ifUsing("editor", function () {
+                StackExchange.using("externalEditor", function () {
+                    StackExchange.using("snippets", function () {
+                        StackExchange.snippets.init();
+                    });
+                });
+            }, "code-snippets");
+        </script>
+    
+
+<script>
+    StackExchange.ready(function() {
+        initTagRenderer("".split(" "), "".split(" "));
+       
+        StackExchange.using("externalEditor", function() {
+                // Have to fire editor after snippets, if snippets enabled
+                if (StackExchange.settings.snippets.snippetsEnabled) {
+                    StackExchange.using("snippets", function() {
+                        createEditor();
+                    });
+                }
+                else {
+                    createEditor();
+                }
+            });
+
+            function createEditor() {
+                prepareEditor({
+                    heartbeatType: 'answer',
+                convertImagesToLinks: true,
+                reputationToPostImages: 10,
+                bindNavPrevention: true,
+                postfix: "",
+                    onDemand: true,
+                    discardSelector: ".discard-answer"
+                    ,immediatelyShowMarkdownHelp:true
+                    });
+                
+
+        }
+    });  
+</script>
+
+
+<div id="post-editor" class="post-editor js-post-editor">
+
+    <div style="position: relative;">     
+        <div class="wmd-container">
+            <div id="wmd-button-bar" class="wmd-button-bar"><ul id="wmd-button-row" class="wmd-button-row"><li id="wmd-bold-button" class="wmd-button" style="left: 0px;"><span style="background-position: 0px -20px;"></span></li><li id="wmd-italic-button" class="wmd-button" style="left: 25px;"><span style="background-position: -20px -20px;"></span></li><li id="wmd-spacer1" class="wmd-spacer" style="left: 50px;"><span style="background-position: -40px -20px;"></span></li><li id="wmd-link-button" class="wmd-button" style="left: 75px;"><span style="background-position: -40px -20px;"></span></li><li id="wmd-quote-button" class="wmd-button" style="left: 100px;"><span style="background-position: -60px -20px;"></span></li><li id="wmd-code-button" class="wmd-button" style="left: 125px;"><span style="background-position: -80px -20px;"></span></li><li id="wmd-image-button" class="wmd-button" style="left: 150px;"><span style="background-position: -100px -20px;"></span></li><li id="wmd-spacer2" class="wmd-spacer" style="left: 175px;"><span style="background-position: -120px -20px;"></span></li><li id="wmd-olist-button" class="wmd-button" style="left: 200px;"><span style="background-position: -120px -20px;"></span></li><li id="wmd-ulist-button" class="wmd-button" style="left: 225px;"><span style="background-position: -140px -20px;"></span></li><li id="wmd-heading-button" class="wmd-button" style="left: 250px;"><span style="background-position: -160px -20px;"></span></li><li id="wmd-hr-button" class="wmd-button" style="left: 275px;"><span style="background-position: -180px -20px;"></span></li><li id="wmd-spacer3" class="wmd-spacer" style="left: 300px;"><span style="background-position: -200px -20px;"></span></li><li id="wmd-undo-button" class="wmd-button" style="left: 325px;"><span style="background-position: -200px -20px;"></span></li><li id="wmd-redo-button" class="wmd-button" style="left: 350px;"><span style="background-position: -220px -20px;"></span></li></ul></div>
+            <textarea id="wmd-input" class="wmd-input" name="post-text" cols="92" rows="15" tabindex="101" data-min-length=""></textarea>
+        </div>
+    </div>
+
+    <div class="fl" style="margin-top: 8px; height:24px;">&nbsp;</div>
+    <div id="draft-saved" class="draft-saved community-option fl" style="margin-top: 8px; height:24px; display:none;">draft saved</div>
+
+    <div id="draft-discarded" class="draft-discarded community-option fl" style="margin-top: 8px; height:24px; display:none;">draft discarded</div>
+
+
+
+    <div id="wmd-preview" class="wmd-preview"></div>
+    <div></div>
+    <div class="edit-block">
+        <input id="fkey" name="fkey" type="hidden" value="133255154f4b488e87b907d9f3a0bdcf">
+        <input id="author" name="author" type="text">
+    </div>
+
+
+
+</div>
+							<div style="position: relative;">
+								
+								            <div class="form-item new-post-login">
+        
+                <div class="new-login-form">
+                    <div class="new-login-left">
+                        <h3>Sign up or <a id="login-link" href="http://stackoverflow.com/users/login?ssrc=question_page&amp;returnurl=http%3a%2f%2fstackoverflow.com%2fquestions%2f6314626%2fget-set-httpcontext-session-methods-in-basecontroller-vs-mocking-httpcontextbase%23new-answer">log in</a></h3>
+                        <script>
+                            StackExchange.ready(function () {
+                                StackExchange.helpers.onClickDraftSave('#login-link');
+                                    
+                                var $window = $(window),
+                                    onScroll = function(e) {
+                                        var $elem = $('.new-login-left'),
+                                            docViewTop = $window.scrollTop(),
+                                            docViewBottom = docViewTop + $window.height(),
+                                            elemTop = $elem.offset().top,
+                                            elemBottom = elemTop + $elem.height();							
+                                        if ((docViewTop < elemTop) && (docViewBottom > elemBottom))  {
+                                            StackExchange.using('gps', function() { StackExchange.gps.track('embedded_signup_form.view', { location: 'question_page' }); });
+                                            $window.unbind('scroll', onScroll);
+                                        }
+                                    };
+                                $window.on('scroll', onScroll);
+                                    
+                            });
+                        </script>
+                        <div class="preferred-login google-login">
+                            <p><span class="icon"></span><span>Sign up using Google</span></p>
+                        </div>
+                        <div class="preferred-login facebook-login">
+                            <p><span class="icon"></span><span>Sign up using Facebook</span></p>
+                        </div>
+                        <div class="preferred-login stackexchange-login">
+                            <p><span class="icon"></span><span>Sign up using Email and Password</span></p>
+                        </div>
+                    </div>
+                    <input type="hidden" name="manual-openid" class="manual-openid">
+                    <input type="hidden" name="use-facebook" class="use-facebook" value="false">
+                    <input type="hidden" name="use-google" class="use-google" value="false">
+                    <input type="button" class="submit-openid" value="Submit" style="display:none">
+                    <div class="new-login-right">
+                                <h3>Post as a guest</h3>
+    <div class="form-item">
+        <table>
+        <tbody><tr>
+                    <td class="vm">
+                <div>
+                    <label for="display-name">Name</label>
+                    <input id="display-name" name="display-name" type="text" size="30" maxlength="30" value="" tabindex="105">
+                </div>
+                <div>
+                    <label for="m-address">Email</label>
+                    <input id="m-address" name="m-address" type="email" size="30" maxlength="100" value="" tabindex="106" placeholder="required, but never shown">
+                </div>
+            </td>
+        </tr>
+        </tbody></table>
+    </div>
+
+                    </div>
+                </div>
+            </div>
+            <script>
+                StackExchange.ready(
+                    function () {
+                        StackExchange.openid.initPostLogin('.new-post-login', 'http%3a%2f%2fstackoverflow.com%2fquestions%2f6314626%2fget-set-httpcontext-session-methods-in-basecontroller-vs-mocking-httpcontextbase%23new-answer', 'question_page');
+                    }
+                );
+            </script>
+            <noscript>
+                        &lt;h3&gt;Post as a guest&lt;/h3&gt;
+    &lt;div class="form-item"&gt;
+        &lt;table&gt;
+        &lt;tr&gt;
+                    &lt;td class="vm"&gt;
+                &lt;div&gt;
+                    &lt;label for="display-name"&gt;Name&lt;/label&gt;
+                    &lt;input id="display-name" name="display-name" type="text" size="30" maxlength="30" value="" tabindex="105"&gt;
+                &lt;/div&gt;
+                &lt;div&gt;
+                    &lt;label for="m-address"&gt;Email&lt;/label&gt;
+                    &lt;input id="m-address" name="m-address" type="email" size="30" maxlength="100" value="" tabindex="106" placeholder="required, but never shown" /&gt;
+                &lt;/div&gt;
+            &lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;/table&gt;
+    &lt;/div&gt;
+
+            </noscript>
+
+							</div>
+           
+															<div class="form-submit cbt">
+									<input id="submit-button" type="submit" value="Post Your Answer" tabindex="110">
+									<a href="http://stackoverflow.com/questions/6314626/get-set-httpcontext-session-methods-in-basecontroller-vs-mocking-httpcontextbase#" class="btn-clear discard-answer dno">discard</a>
+
+<p class="privacy-policy-agreement">
+By posting your answer, you agree to the <a href="http://stackexchange.com/legal/privacy-policy" target="_blank">privacy policy</a> and <a href="http://stackexchange.com/legal/terms-of-service" target="_blank">terms of service</a>.</p>
+<input type="hidden" name="legalLinksShown" value="1">								</div>
+						</form>
+
+
+
+						<h2 class="bottom-notice" data-loc="1">
+Not the answer you're looking for?							Browse other questions tagged <a href="http://stackoverflow.com/questions/tagged/asp.net-mvc" class="post-tag" title="show questions tagged &#39;asp.net-mvc&#39;" rel="tag">asp.net-mvc</a> <a href="http://stackoverflow.com/questions/tagged/session" class="post-tag" title="show questions tagged &#39;session&#39;" rel="tag">session</a> <a href="http://stackoverflow.com/questions/tagged/httpcontext" class="post-tag" title="show questions tagged &#39;httpcontext&#39;" rel="tag">httpcontext</a>  or <a href="http://stackoverflow.com/questions/ask">ask your own question</a>.						</h2>
+			</div>
+		</div>
+				<div id="sidebar" class="show-votes">
+						    <div class="module question-stats">
+			        <table id="qinfo">
+			            <tbody><tr>
+			                <td>
+			                    <p class="label-key">asked</p>
+			                </td>
+			                <td style="padding-left: 10px">
+			                    <p class="label-key" title="2011-06-11 07:07:50Z"><b>5 years ago</b></p>
+			                </td>
+			            </tr>
+			            <tr>
+			                <td>
+			                    <p class="label-key">viewed</p>
+			                </td>
+
+			                <td style="padding-left: 10px">
+			                    <p class="label-key">
+			                        <b>12273 times</b>
+			                    </p>
+			                </td>
+			            </tr>
+			                <tr>
+			                    <td>
+			                        <p class="label-key">active</p>
+			                    </td>
+			                    <td style="padding-left: 10px">
+			                        <p class="label-key"><b><a href="http://stackoverflow.com/questions/6314626/get-set-httpcontext-session-methods-in-basecontroller-vs-mocking-httpcontextbase?lastactivity" class="lastactivity-link" title="2014-01-10 11:27:09Z">2 years ago</a></b></p>
+			                    </td>
+			                </tr>
+			        </tbody></table>
+			    </div>
+			<div class="module community-bulletin" data-tracker="cb=1">
+    <div class="related">
+                <div class="bulletin-title">
+                    Upcoming Events
+                </div>
+                <hr>
+    <div class="spacer bulletin-item-important">
+        
+    <div class="bulletin-item-type"><a href="http://stackoverflow.com/election?cb=1" class="question-hyperlink"><div class="favicon favicon-stackoverflow" title="Stack Overflow"></div></a></div>
+    <div class="bulletin-item-content">
+        <a href="http://stackoverflow.com/election?cb=1" class="question-hyperlink">2016 Community Moderator Election</a>
+        <div>ends <span title="2016-11-22 20:00:00Z">Nov 22</span></div>
+    </div>
+    <br class="cbt">
+</div>
+    </div>
+</div>			
+			<div class="everyonelovesstackoverflow orange looking tagged clc-jobs-multi" id="hireme"><a href="http://stackoverflow.com/jobs" target="_blank" data-at="0" data-tz="1" data-ti="0" class="top "><span>Looking for a job?</span></a><div class="middle"><ul class="jobs"><li class="&quot;clc-dismissable&quot;"><div class="job-wrap"><a class="job" data-at="0" data-tz="3" data-ti="224101" href="http://stackoverflow.com/jobs/124101/don-t-be-a-baby-grow-up-and-code-for-yorkshires-direct2mum-ltd" target="_blank" title="Don’t be a baby, grow up and code for Yorkshires finest baby retailer at Direct2Mum Ltd. Click to learn more."><div class="title">Don’t be a baby, grow up and code for Yorkshires finest baby retailer</div><div><span class="company">Direct2Mum Ltd</span><span class="location">Barnsley, UK</span></div><span class="post-tag">asp.net-mvc</span><span class="post-tag">c#</span></a></div><a class="clc-dismiss clc-non-ad" data-clc-url="//clc.stackoverflow.com/dismiss-job" data-clcparam-cid="224101" data-clc-tooltip="dismiss this job"><span class="clc-tooltip above-left">dismiss this job</span></a></li><li class="&quot;clc-dismissable&quot;"><div class="job-wrap"><a class="job" data-at="0" data-tz="3" data-ti="223658" href="http://stackoverflow.com/jobs/123658/web-developer-aspnet-mvc-totaljobs-group" target="_blank" title="Web Developer - ASP.Net MVC at Totaljobs Group. Click to learn more."><div class="title">Web Developer - ASP.Net MVC</div><div><span class="company">Totaljobs Group</span><span class="location">London, UK</span></div><span class="post-tag">asp.net-mvc</span><span class="post-tag">amazon-web-services</span></a></div><a class="clc-dismiss clc-non-ad" data-clc-url="//clc.stackoverflow.com/dismiss-job" data-clcparam-cid="223658" data-clc-tooltip="dismiss this job"><span class="clc-tooltip above-left">dismiss this job</span></a></li><li class="&quot;clc-dismissable&quot;"><div class="job-wrap"><a class="job" data-at="0" data-tz="3" data-ti="228363" href="http://stackoverflow.com/jobs/128363/mobile-software-engineer-mydrive" target="_blank" title="Mobile Software Engineer at MyDrive. Click to learn more."><div class="title">Mobile Software Engineer</div><div><span class="company">MyDrive</span><span class="location">London, UK</span></div><div class="opts"><span class="salary">£35,000 - £55,000</span></div><span class="post-tag">android</span><span class="post-tag">ios</span></a></div><a class="clc-dismiss clc-non-ad" data-clc-url="//clc.stackoverflow.com/dismiss-job" data-clcparam-cid="228363" data-clc-tooltip="dismiss this job"><span class="clc-tooltip above-left">dismiss this job</span></a></li><li class="&quot;clc-dismissable&quot;"><div class="job-wrap"><a class="job" data-at="0" data-tz="3" data-ti="226657" href="http://stackoverflow.com/jobs/126657/are-you-looking-to-get-more-customer-focused-xceptor" target="_blank" title="Are you looking to get more customer focused? at Xceptor. Click to learn more."><div class="title">Are you looking to get more customer focused?</div><div><span class="company">Xceptor</span><span class="location">London, UK</span></div><div class="opts"><span class="salary">£32,000 - £38,000</span></div><span class="post-tag">.net</span><span class="post-tag">xml</span></a></div><a class="clc-dismiss clc-non-ad" data-clc-url="//clc.stackoverflow.com/dismiss-job" data-clcparam-cid="226657" data-clc-tooltip="dismiss this job"><span class="clc-tooltip above-left">dismiss this job</span></a></li></ul><div style="clear:both"></div></div><img class="impression" src="./asp.net mvc - Get_Set HttpContext Session Methods in BaseController vs Mocking HttpContextBase to create Get_Set methods - Stack Overflow_files/soi.gif" style="display:none;"></div>
+        <script>
+;(function(n){var u=Object.assign||function(n){for(var i,r,u,f,e=[],t=1;t<arguments.length;t++)e[t-1]=arguments[t];for(i=0,r=e;i<r.length;i++){u=r[i];for(f in u)n[f]=u[f]}return n},r,t,f,i;try{if(typeof[].indexOf!="function")return;if(window.attachEvent&&!window.addEventListener)return;if(r=["stackoverflow.com","serverfault.com","careers.stackoverflow.com","blog.codinghorror.com","joelonsoftware.com","www.joelonsoftware.com","talent.stackoverflow.com"],r[0]!=="*"&&r.indexOf(location.hostname)===-1)return;t=window;f=t.clc_opts?u({},window.clc_opts):{};t.clc_opts=u(n,f);void 0;t.clc_opts.autoload&&(t.clc_init=t.clc_init||[],t.clc_init.push(function(){return t.clc.load()}));i=document.createElement("script");i.async=!0;void 0;i.src=t.clc_opts.lib;document.body.appendChild(i)}catch(e){void 0}}).call(null, {"azw":true,"kt":2000,"tto":true,"autoload":true,"d":{"sb":["hireme","clc-sb"],"tlb":["careers1","clc-tlb"],"mlb":["careers3","clc-mlb"]},"allowed":["stackoverflow.com","serverfault.com","careers.stackoverflow.com","blog.codinghorror.com","joelonsoftware.com","www.joelonsoftware.com","talent.stackoverflow.com"],"h":"clc.stackoverflow.com","u":"//clc.stackoverflow.com/p.js","lib":"//cdn.sstatic.net/clc/clc.min.js?v=0b93ded9c111"});        </script>
+            <script>
+window.clcfl_request = 'AQAAAACCWmAAAgAAAAIAAAABIQAAAHxhc3AubmV0LW12Y3xzZXNzaW9ufGh0dHBjb250ZXh0fAASgEQ-9xCfEhsC';
+                ;(function(n){var t,i;try{if(typeof[].indexOf!="function")return;if(window.attachEvent&&!window.addEventListener)return;if(n.allowed[0]!=="*"&&n.allowed.indexOf(location.hostname)===-1)return;t=window;t.clcfl=t.clcfl||{};t.clcfl_request||void 0;t.clcfl.init=t.clcfl.init||[];t.clcfl.init.push(function(n){return n.load()});t.clcfl.options=n;i=document.createElement("script");i.async=!0;i.src=n.lib;document.body.appendChild(i)}catch(r){}}).call(null, {"azw":true,"kt":2000,"tto":true,"autoload":true,"d":{"sb":["hireme","clc-sb"],"tlb":["careers1","clc-tlb"],"mlb":["careers3","clc-mlb"]},"allowed":["stackoverflow.com","serverfault.com","careers.stackoverflow.com","blog.codinghorror.com","joelonsoftware.com","www.joelonsoftware.com","talent.stackoverflow.com"],"h":"clc.stackoverflow.com","u":"//clc.stackoverflow.com/fl/markup-bg.js","lib":"//cdn.sstatic.net/clc/fl/clc.min.js?v=896d1e931c04"});
+            </script>
+			
+
+            <div class="module sidebar-linked">
+	<h4 id="h-linked">Linked</h4>
+	<div class="linked" data-tracker="lq=1">
+
+<div class="spacer">
+	<a href="http://stackoverflow.com/q/560084?lq=1" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes answered-accepted large">144</div>
+	</a>
+	<a href="http://stackoverflow.com/questions/560084/session-variables-in-asp-net-mvc?noredirect=1&amp;lq=1" class="question-hyperlink">Session variables in ASP.NET MVC</a>
+</div>			</div>
+</div>
+
+				<div class="module sidebar-related">
+					<h4 id="h-related">Related</h4>
+                    <div class="related js-gps-related-questions" data-tracker="rq=1">
+                        <div class="spacer js-gps-track"><a href="http://stackoverflow.com/q/1452418?rq=1" title="Vote score (upvotes - downvotes)"><div class="answer-votes default">71</div></a><a href="http://stackoverflow.com/questions/1452418/how-do-i-mock-the-httpcontext-in-asp-net-mvc-using-moq?rq=1" class="question-hyperlink">How do I mock the HttpContext in ASP.NET MVC using Moq?</a></div><div class="spacer js-gps-track"><a href="http://stackoverflow.com/q/1992141?rq=1" title="Vote score (upvotes - downvotes)"><div class="answer-votes answered-accepted large">106</div></a><a href="http://stackoverflow.com/questions/1992141/how-do-i-get-an-httpcontext-object-from-httpcontextbase-in-asp-net-mvc-1?rq=1" class="question-hyperlink">How do I get an HttpContext object from HttpContextBase in ASP.NET MVC 1?</a></div><div class="spacer js-gps-track"><a href="http://stackoverflow.com/q/2299247?rq=1" title="Vote score (upvotes - downvotes)"><div class="answer-votes answered-accepted default">1</div></a><a href="http://stackoverflow.com/questions/2299247/asp-net-mvc-how-to-create-own-httpcontext?rq=1" class="question-hyperlink">ASP.NET MVC : How to create own HttpContext</a></div><div class="spacer js-gps-track"><a href="http://stackoverflow.com/q/4937520?rq=1" title="Vote score (upvotes - downvotes)"><div class="answer-votes answered-accepted default">0</div></a><a href="http://stackoverflow.com/questions/4937520/creating-a-wrapper-for-httpcontext?rq=1" class="question-hyperlink">Creating a Wrapper For HttpContext</a></div><div class="spacer js-gps-track"><a href="http://stackoverflow.com/q/5366642?rq=1" title="Vote score (upvotes - downvotes)"><div class="answer-votes answered-accepted default">2</div></a><a href="http://stackoverflow.com/questions/5366642/questions-regarding-httpcontext-httpcontextbase-and-action-filters?rq=1" class="question-hyperlink">Questions regarding HttpContext, HttpContextBase, and Action Filters</a></div><div class="spacer js-gps-track"><a href="http://stackoverflow.com/q/6094543?rq=1" title="Vote score (upvotes - downvotes)"><div class="answer-votes answered-accepted default">0</div></a><a href="http://stackoverflow.com/questions/6094543/httpcontextbase-session-is-null?rq=1" class="question-hyperlink">HttpContextBase: Session is null</a></div><div class="spacer js-gps-track"><a href="http://stackoverflow.com/q/6314530?rq=1" title="Vote score (upvotes - downvotes)"><div class="answer-votes answered-accepted default">3</div></a><a href="http://stackoverflow.com/questions/6314530/best-practice-to-access-an-httpcontext-session-outside-the-controller-in-a-separ?rq=1" class="question-hyperlink">Best practice to access an HttpContext session outside the controller in a separate helper class</a></div><div class="spacer js-gps-track"><a href="http://stackoverflow.com/q/8443746?rq=1" title="Vote score (upvotes - downvotes)"><div class="answer-votes answered-accepted default">1</div></a><a href="http://stackoverflow.com/questions/8443746/mocking-httpcontext-session?rq=1" class="question-hyperlink">Mocking HttpContext (Session)</a></div><div class="spacer js-gps-track"><a href="http://stackoverflow.com/q/37430226?rq=1" title="Vote score (upvotes - downvotes)"><div class="answer-votes default">0</div></a><a href="http://stackoverflow.com/questions/37430226/unit-testing-sessions-is-still-returning-null-after-mocking?rq=1" class="question-hyperlink">Unit testing sessions is still returning null after Mocking</a></div>
+                    </div>
+				</div>
+            
+<div id="hot-network-questions" class="module">
+    <h4>
+        <a href="http://stackexchange.com/questions?tab=hot" class="js-gps-track" data-gps-track="posts_hot_network.click({ item_type:1, location:11 })">
+            Hot Network Questions
+        </a>
+    </h4>
+    <ul>
+            <li>
+                <div class="favicon favicon-security" title="Information Security Stack Exchange"></div><a href="http://security.stackexchange.com/questions/141868/why-are-password-boxes-always-blanked-out-when-other-sensitive-data-isnt" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:162 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Why are password boxes always blanked out when other sensitive data isn't?
+                </a>
+
+            </li>
+            <li>
+                <div class="favicon favicon-mathematica" title="Mathematica Stack Exchange"></div><a href="http://mathematica.stackexchange.com/questions/130711/expression-evaluates-numerically-inside-of-plot-but-not-otherwise" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:387 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Expression evaluates numerically inside of Plot but not otherwise
+                </a>
+
+            </li>
+            <li>
+                <div class="favicon favicon-workplace" title="The Workplace Stack Exchange"></div><a href="http://workplace.stackexchange.com/questions/79240/i-just-started-my-first-real-job-and-have-been-asked-to-organize-the-office-par" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:423 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    I just started my first real job, and have been asked to organize the office party. How do I handle this?
+                </a>
+
+            </li>
+            <li>
+                <div class="favicon favicon-parenting" title="Parenting Stack Exchange"></div><a href="http://parenting.stackexchange.com/questions/27665/teenage-daughter-refusing-to-go-to-school" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:228 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Teenage daughter refusing to go to school
+                </a>
+
+            </li>
+            <li>
+                <div class="favicon favicon-math" title="Mathematics Stack Exchange"></div><a href="http://math.stackexchange.com/questions/2004895/does-fx-mean-the-same-thing-as-fx" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:69 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Does f:x mean the same thing as f(x)?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-math" title="Mathematics Stack Exchange"></div><a href="http://math.stackexchange.com/questions/2003656/hyper-derivative-definition" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:69 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Hyper Derivative definition.
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-electronics" title="Electrical Engineering Stack Exchange"></div><a href="http://electronics.stackexchange.com/questions/268033/why-does-low-frequency-rfid-have-a-short-read-range" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:135 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Why does low frequency RFID have a short read range?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-puzzling" title="Puzzling Stack Exchange"></div><a href="http://puzzling.stackexchange.com/questions/45437/what-movie-is-this" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:559 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    What movie is this?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-security" title="Information Security Stack Exchange"></div><a href="http://security.stackexchange.com/questions/142110/is-privacy-compromised-when-sharing-sha-1-hashed-urls" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:162 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Is privacy compromised when sharing SHA-1 hashed URLs?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-sitecore" title="Sitecore Stack Exchange"></div><a href="http://sitecore.stackexchange.com/questions/2294/how-to-be-recommended-to-be-a-sitecore-mvp" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:664 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How to be Recommended to be a Sitecore MVP
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-workplace" title="The Workplace Stack Exchange"></div><a href="http://workplace.stackexchange.com/questions/79251/developer-does-not-see-priority-in-git-development-workflow-being-followed" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:423 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Developer does not see priority in git Development Workflow being followed
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-aviation" title="Aviation Stack Exchange"></div><a href="http://aviation.stackexchange.com/questions/33042/how-do-pilots-identify-the-taxi-path-to-the-runway" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:528 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How do pilots identify the taxi path to the runway?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-photo" title="Photography Stack Exchange"></div><a href="http://photo.stackexchange.com/questions/84292/if-an-image-is-rotated-losslessly-why-does-the-file-size-change" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:61 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    If an image is rotated losslessly, why does the file size change?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-dba" title="Database Administrators Stack Exchange"></div><a href="http://dba.stackexchange.com/questions/154595/query-for-highest-version" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:182 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Query for highest version
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-money" title="Personal Finance &amp; Money Stack Exchange"></div><a href="http://money.stackexchange.com/questions/72431/ballpark-salary-equivalent-today-of-healthcare-benefits-in-the-us" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:93 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Ballpark salary equivalent today of "healthcare benefits" in the US?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-english" title="English Language &amp; Usage Stack Exchange"></div><a href="http://english.stackexchange.com/questions/357476/how-can-i-ask-about-the-winner-of-an-ongoing-match" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:97 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How can I ask about the "winner" of an ongoing match?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-sitecore" title="Sitecore Stack Exchange"></div><a href="http://sitecore.stackexchange.com/questions/2315/glassmapper-fields-displaying-null-despite-correct-item-id" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:664 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Glassmapper fields displaying null despite correct item ID
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-money" title="Personal Finance &amp; Money Stack Exchange"></div><a href="http://money.stackexchange.com/questions/72487/need-to-change-cash-to-cashiers-check-without-bank-account-just-arrived-to-the" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:93 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Need to change cash to cashier's check without bank account (Just arrived to the US)
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-workplace" title="The Workplace Stack Exchange"></div><a href="http://workplace.stackexchange.com/questions/79252/at-delivery-time-client-criticises-the-lack-of-some-features-that-werent-writt" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:423 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    At delivery time, client criticises the lack of some features that weren't written on my quote. How to react?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-codegolf" title="Programming Puzzles &amp; Code Golf Stack Exchange"></div><a href="http://codegolf.stackexchange.com/questions/98968/go-out-and-vote" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:200 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    GO OUT AND VOTE
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-worldbuilding" title="Worldbuilding Stack Exchange"></div><a href="http://worldbuilding.stackexchange.com/questions/60588/the-cost-of-switching-to-electric-cars" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:579 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    The cost of switching to electric cars?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-salesforce" title="Salesforce Stack Exchange"></div><a href="http://salesforce.stackexchange.com/questions/147708/how-to-remove-text-field-value-after-comma-using-apex-code" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:459 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How to remove text field value after comma using apex code?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-worldbuilding" title="Worldbuilding Stack Exchange"></div><a href="http://worldbuilding.stackexchange.com/questions/60596/would-we-find-alien-music-meaningful" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:579 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Would we find alien music meaningful?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-rpg" title="Role-playing Games Stack Exchange"></div><a href="http://rpg.stackexchange.com/questions/90147/whats-the-name-of-style-where-gm-assumes-idiotic-behaviour-unless-stated-otherw" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:122 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    What's the name of style where GM assumes idiotic behaviour unless stated otherwise?
+                </a>
+
+            </li>
+    </ul>
+
+        
+</div>
+		</div>
+	
+<div id="feed-link">
+    <div id="feed-link-text">
+        <a href="http://stackoverflow.com/feeds/question/6314626" title="feed of this question and its answers">
+            <span class="feed-icon"></span>question feed
+        </a>
+    </div>
+</div>	<script>
+StackExchange.ready(function(){$.get('/posts/6314626/ivc/db0a');});
+</script>
+<noscript>
+    &lt;div&gt;&lt;img src="/posts/6314626/ivc/db0a" class="dno" alt="" width="0" height="0"&gt;&lt;/div&gt;
+</noscript><div style="display:none" id="prettify-lang">default</div></div>
+
+
+        </div>
+    </div><script async="" src="./asp.net mvc - Get_Set HttpContext Session Methods in BaseController vs Mocking HttpContextBase to create Get_Set methods - Stack Overflow_files/clc.min.js.download"></script><script async="" src="./asp.net mvc - Get_Set HttpContext Session Methods in BaseController vs Mocking HttpContextBase to create Get_Set methods - Stack Overflow_files/clc.min.js(1).download"></script>
+    <div id="footer" class="categories">
+        <div class="footerwrap">            
+            <div id="footer-menu">
+                <div class="top-footer-links">
+                    <a href="http://stackoverflow.com/company/about">about us</a>
+                        <a href="http://stackoverflow.com/tour">tour</a>
+                    <a href="http://stackoverflow.com/help">help</a>
+                    <a href="http://stackoverflow.blog/?blb=1">blog</a>
+                        <a href="http://chat.stackoverflow.com/">chat</a>
+                    <a href="http://data.stackexchange.com/">data</a>
+                    <a href="http://stackexchange.com/legal">legal</a>
+                    <a href="http://stackexchange.com/legal/privacy-policy">privacy policy</a>
+                    <a href="http://stackoverflow.com/company/work-here">work here</a>
+                    <a href="http://stackexchange.com/mediakit">advertising info</a>
+
+                    <a onclick="StackExchange.switchMobile(&quot;on&quot;)">mobile</a>
+                    <b><a href="http://stackoverflow.com/contact">contact us</a></b>
+                        <b><a href="http://meta.stackoverflow.com/">feedback</a></b>
+                    
+                </div>
+                <div id="footer-sites">
+                    <table>
+    <tbody><tr>
+            <th colspan="4">
+                Technology
+            </th>
+            <th colspan="2">
+                Life / Arts
+            </th>
+            <th colspan="2">
+                Culture / Recreation
+            </th>
+            <th colspan="2">
+                Science
+            </th>
+            <th>
+                Other
+            </th>
+    </tr>
+    <tr>
+            <td>
+                <ol>
+                        <li><a href="http://stackoverflow.com/" title="professional and enthusiast programmers">Stack Overflow</a></li>
+                        <li><a href="http://serverfault.com/" title="system and network administrators">Server Fault</a></li>
+                        <li><a href="http://superuser.com/" title="computer enthusiasts and power users">Super User</a></li>
+                        <li><a href="http://webapps.stackexchange.com/" title="power users of web applications">Web Applications</a></li>
+                        <li><a href="http://askubuntu.com/" title="Ubuntu users and developers">Ask Ubuntu</a></li>
+                        <li><a href="http://webmasters.stackexchange.com/" title="pro webmasters">Webmasters</a></li>
+                        <li><a href="http://gamedev.stackexchange.com/" title="professional and independent game developers">Game Development</a></li>
+                        <li><a href="http://tex.stackexchange.com/" title="users of TeX, LaTeX, ConTeXt, and related typesetting systems">TeX - LaTeX</a></li>
+                            </ol></td><td><ol>
+                        <li><a href="http://softwareengineering.stackexchange.com/" title="professionals, academics, and students working within the systems development life cycle who care about creating, delivering, and maintaining software responsibly">Software Engineering</a></li>
+                        <li><a href="http://unix.stackexchange.com/" title="users of Linux, FreeBSD and other Un*x-like operating systems">Unix &amp; Linux</a></li>
+                        <li><a href="http://apple.stackexchange.com/" title="power users of Apple hardware and software">Ask Different (Apple)</a></li>
+                        <li><a href="http://wordpress.stackexchange.com/" title="WordPress developers and administrators">WordPress Development</a></li>
+                        <li><a href="http://gis.stackexchange.com/" title="cartographers, geographers and GIS professionals">Geographic Information Systems</a></li>
+                        <li><a href="http://electronics.stackexchange.com/" title="electronics and electrical engineering professionals, students, and enthusiasts">Electrical Engineering</a></li>
+                        <li><a href="http://android.stackexchange.com/" title="enthusiasts and power users of the Android operating system">Android Enthusiasts</a></li>
+                        <li><a href="http://security.stackexchange.com/" title="information security professionals">Information Security</a></li>
+                            </ol></td><td><ol>
+                        <li><a href="http://dba.stackexchange.com/" title="database professionals who wish to improve their database skills and learn from others in the community">Database Administrators</a></li>
+                        <li><a href="http://drupal.stackexchange.com/" title="Drupal developers and administrators">Drupal Answers</a></li>
+                        <li><a href="http://sharepoint.stackexchange.com/" title="SharePoint enthusiasts">SharePoint</a></li>
+                        <li><a href="http://ux.stackexchange.com/" title="user experience researchers and experts">User Experience</a></li>
+                        <li><a href="http://mathematica.stackexchange.com/" title="users of Mathematica">Mathematica</a></li>
+                        <li><a href="http://salesforce.stackexchange.com/" title="Salesforce administrators, implementation experts, developers and anybody in-between">Salesforce</a></li>
+                        <li><a href="http://expressionengine.stackexchange.com/" title="administrators, end users, developers and designers for ExpressionEngine® CMS">ExpressionEngine® Answers</a></li>
+                        <li><a href="http://crypto.stackexchange.com/" title="software developers, mathematicians and others interested in cryptography">Cryptography</a></li>
+                            </ol></td><td><ol>
+                        <li><a href="http://codereview.stackexchange.com/" title="peer programmer code reviews">Code Review</a></li>
+                        <li><a href="http://magento.stackexchange.com/" title="users of the Magento e-Commerce platform">Magento</a></li>
+                        <li><a href="http://dsp.stackexchange.com/" title="practitioners of the art and science of signal, image and video processing">Signal Processing</a></li>
+                        <li><a href="http://raspberrypi.stackexchange.com/" title="users and developers of hardware and software for Raspberry Pi">Raspberry Pi</a></li>
+                        <li><a href="http://codegolf.stackexchange.com/" title="programming puzzle enthusiasts and code golfers">Programming Puzzles &amp; Code Golf</a></li>
+                    
+                        <li>
+                            <a href="http://stackexchange.com/sites#technology" class="more">
+                                more (7)
+                            </a>
+                        </li>
+                </ol>
+            </td>
+            <td>
+                <ol>
+                        <li><a href="http://photo.stackexchange.com/" title="professional, enthusiast and amateur photographers">Photography</a></li>
+                        <li><a href="http://scifi.stackexchange.com/" title="science fiction and fantasy enthusiasts">Science Fiction &amp; Fantasy</a></li>
+                        <li><a href="http://graphicdesign.stackexchange.com/" title="Graphic Design professionals, students, and enthusiasts">Graphic Design</a></li>
+                        <li><a href="http://movies.stackexchange.com/" title="movie and tv enthusiasts">Movies &amp; TV</a></li>
+                        <li><a href="http://music.stackexchange.com/" title="musicians, students, and enthusiasts">Music: Practice &amp; Theory</a></li>
+                        <li><a href="http://cooking.stackexchange.com/" title="professional and amateur chefs">Seasoned Advice (cooking)</a></li>
+                        <li><a href="http://diy.stackexchange.com/" title="contractors and serious DIYers">Home Improvement</a></li>
+                        <li><a href="http://money.stackexchange.com/" title="people who want to be financially literate">Personal Finance &amp; Money</a></li>
+                            </ol></td><td><ol>
+                        <li><a href="http://academia.stackexchange.com/" title="academics and those enrolled in higher education">Academia</a></li>
+                    
+                        <li>
+                            <a href="http://stackexchange.com/sites#lifearts" class="more">
+                                more (8)
+                            </a>
+                        </li>
+                </ol>
+            </td>
+            <td>
+                <ol>
+                        <li><a href="http://english.stackexchange.com/" title="linguists, etymologists, and serious English language enthusiasts">English Language &amp; Usage</a></li>
+                        <li><a href="http://skeptics.stackexchange.com/" title="scientific skepticism">Skeptics</a></li>
+                        <li><a href="http://judaism.stackexchange.com/" title="those who base their lives on Jewish law and tradition and anyone interested in learning more">Mi Yodeya (Judaism)</a></li>
+                        <li><a href="http://travel.stackexchange.com/" title="road warriors and seasoned travelers">Travel</a></li>
+                        <li><a href="http://christianity.stackexchange.com/" title="committed Christians, experts in Christianity and those interested in learning more">Christianity</a></li>
+                        <li><a href="http://ell.stackexchange.com/" title="speakers of other languages learning English">English Language Learners</a></li>
+                        <li><a href="http://japanese.stackexchange.com/" title="students, teachers, and linguists wanting to discuss the finer points of the Japanese language">Japanese Language</a></li>
+                        <li><a href="http://gaming.stackexchange.com/" title="passionate videogamers on all platforms">Arqade (gaming)</a></li>
+                            </ol></td><td><ol>
+                        <li><a href="http://bicycles.stackexchange.com/" title="people who build and repair bicycles, people who train cycling, or commute on bicycles">Bicycles</a></li>
+                        <li><a href="http://rpg.stackexchange.com/" title="gamemasters and players of tabletop, paper-and-pencil role-playing games">Role-playing Games</a></li>
+                        <li><a href="http://anime.stackexchange.com/" title="anime and manga fans">Anime &amp; Manga</a></li>
+                        <li><a href="http://mechanics.stackexchange.com/" title="mechanics and DIY enthusiast owners of cars, trucks, and motorcycles">Motor Vehicle Maintenance &amp; Repair</a></li>
+                    
+                        <li>
+                            <a href="http://stackexchange.com/sites#culturerecreation" class="more">
+                                more (17)
+                            </a>
+                        </li>
+                </ol>
+            </td>
+            <td>
+                <ol>
+                        <li><a href="http://mathoverflow.net/" title="professional mathematicians">MathOverflow</a></li>
+                        <li><a href="http://math.stackexchange.com/" title="people studying math at any level and professionals in related fields">Mathematics</a></li>
+                        <li><a href="http://stats.stackexchange.com/" title="people interested in statistics, machine learning, data analysis, data mining, and data visualization">Cross Validated (stats)</a></li>
+                        <li><a href="http://cstheory.stackexchange.com/" title="theoretical computer scientists and researchers in related fields">Theoretical Computer Science</a></li>
+                        <li><a href="http://physics.stackexchange.com/" title="active researchers, academics and students of physics">Physics</a></li>
+                        <li><a href="http://chemistry.stackexchange.com/" title="scientists, academics, teachers and students">Chemistry</a></li>
+                        <li><a href="http://biology.stackexchange.com/" title="biology researchers, academics, and students">Biology</a></li>
+                        <li><a href="http://cs.stackexchange.com/" title="students, researchers and practitioners of computer science">Computer Science</a></li>
+                            </ol></td><td><ol>
+                        <li><a href="http://philosophy.stackexchange.com/" title="those interested in the study of the fundamental nature of knowledge, reality, and existence">Philosophy</a></li>
+                    
+                        <li>
+                            <a href="http://stackexchange.com/sites#science" class="more">
+                                more (3)
+                            </a>
+                        </li>
+                </ol>
+            </td>
+            <td>
+                <ol>
+                        <li><a href="http://meta.stackexchange.com/" title="meta-discussion of the Stack Exchange family of Q&amp;A websites">Meta Stack Exchange</a></li>
+                        <li><a href="http://stackapps.com/" title="apps, scripts, and development with the Stack Exchange API">Stack Apps</a></li>
+                        <li><a href="http://area51.stackexchange.com/" title="proposing new sites in the Stack Exchange network">Area 51</a></li>
+                        <li><a href="http://talent.stackoverflow.com/">Stack Overflow Talent</a></li>
+                    
+                </ol>
+            </td>
+    </tr>
+</tbody></table>
+                </div>
+            </div>
+            <div id="copyright">
+                site design / logo © 2016 Stack Exchange Inc; user contributions licensed under <a href="https://creativecommons.org/licenses/by-sa/3.0/" rel="license">cc by-sa 3.0</a> 
+                with <a href="http://blog.stackoverflow.com/2009/06/attribution-required/" rel="license">attribution required</a>
+            </div>
+            <div id="svnrev">
+                rev 2016.11.7.4175
+            </div>
+                </div>
+    </div>
+    <noscript>
+        &lt;div id="noscript-warning"&gt;Stack Overflow works best with JavaScript enabled&lt;img src="http://pixel.quantserve.com/pixel/p-c1rF4kxgLUzNc.gif" alt="" class="dno"&gt;&lt;/div&gt;
+    </noscript>
+        <script> setTimeout(function() { $("#adzerk-user-match").remove(); }, 2000);</script>
+
+    <script>
+            (function(i, s, o, g, r, a, m) {
+                i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function() { (i[r].q = i[r].q || []).push(arguments) }, i[r].l = 1 * new Date(); a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m);
+            })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+            
+            ga('create', 'UA-5620270-1');
+            ga('set', 'dimension2', '|asp.net-mvc|session|httpcontext|');             ga('send', 'pageview');
+        
+        var _qevents = _qevents || [],
+            _comscore = _comscore || [];
+        (function () {
+            var ssl='https:'==document.location.protocol,
+                s=document.getElementsByTagName('script')[0],
+                qc=document.createElement('script');
+                qc.async = true;
+                qc.src = (ssl ? 'https://secure' : 'http://edge') + '.quantserve.com/quant.js';
+                s.parentNode.insertBefore(qc, s);
+                _qevents.push({ qacct: "p-c1rF4kxgLUzNc" });
+                            var sc=document.createElement('script');
+                sc.async=true;
+                sc.src=(ssl?'https://sb':'http://b') + '.scorecardresearch.com/beacon.js';
+                s.parentNode.insertBefore(sc, s);
+                _comscore.push({ c1: "2", c2: "17440561" });
+        })();
+
+    </script>
+        
+    
+            <script type="text/javascript">
+                
+                (function(appendChild) {
+                    Node.prototype.appendChild = function() {
+                        var parent = this;
+                        var newNode = arguments[0];
+                        if (parent.nodeName === 'HEAD'
+                            && newNode
+                            && newNode.nodeName === 'SCRIPT'
+                            && newNode.src) {
+                            
+                            window.setTimeout(function() {
+                                var result = newNode.src.match(/^https:\/\/maps\.googleapis\.com\/maps\/api\/place\/js\/(\w+)Service\./i) || [];
+                                var service = result[1];
+                                if (service) {
+                                    if (service === 'Autocompletion') service =  2;
+                                    else if (service === 'Place') service = 1;
+                                    else service = 0;
+                                    StackExchange.using('gps', function() {
+                                        StackExchange.gps.track('google_maps_places_api.call', { service: service });
+                                    });
+                                }
+                            }, 0);
+                        }
+                        return appendChild.apply(this, arguments);
+                    };
+                })(Node.prototype.appendChild);
+            </script>
+    
+<script async="" src="./asp.net mvc - Get_Set HttpContext Session Methods in BaseController vs Mocking HttpContextBase to create Get_Set methods - Stack Overflow_files/p.js.download"></script><img src="./asp.net mvc - Get_Set HttpContext Session Methods in BaseController vs Mocking HttpContextBase to create Get_Set methods - Stack Overflow_files/impression.gif" class="impression" style="display: none;"></body></html>

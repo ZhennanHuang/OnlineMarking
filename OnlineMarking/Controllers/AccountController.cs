@@ -10,6 +10,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using OnlineMarking.Models;
 using System.Collections.Generic;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace OnlineMarking.Controllers
 {
@@ -81,7 +82,13 @@ namespace OnlineMarking.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
-                    return RedirectToLocal(returnUrl);
+                    {
+                        if (SorT())
+                            return RedirectToAction("Result","Student");
+                        else 
+                            return RedirectToAction("RecordList","Teacher");
+                    }
+                    //return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:
@@ -91,6 +98,17 @@ namespace OnlineMarking.Controllers
                     ModelState.AddModelError("", "Invalid login attempt.");
                     return View(model);
             }
+        }
+        public Boolean SorT() {
+            if (User.Identity.IsAuthenticated) {
+                ApplicationDbContext context = new ApplicationDbContext();
+                var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
+                var role = UserManager.GetRoles(User.Identity.GetUserId());
+                if (role[0] == "student") {
+                    return true;
+                }
+            }
+            return false;
         }
 
         //

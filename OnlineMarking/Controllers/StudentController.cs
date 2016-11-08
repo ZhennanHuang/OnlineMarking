@@ -1,4 +1,6 @@
-﻿using OnlineMarking.Models;
+﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using OnlineMarking.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -20,37 +22,78 @@ namespace OnlineMarking.Controllers
             Records = RecordDB.ToArray();
         }
         // GET: Student
-        public ViewResult Upload()
+        public ActionResult Upload()
         {
-            return View();
+            if (User.Identity.IsAuthenticated)
+                return View();
+            else
+                return RedirectToAction("Login","Account");
         }
         [HttpPost]
         public ActionResult Upload(Record r, HttpPostedFileBase file) {
-            if (file == null) {
-                return View("../Index");
-            }
-            var path = Path.Combine(Request.MapPath("~/studentRecord/" + User.Identity.Name), Path.GetFileName(file.FileName));
-            try
+
+            if (User.Identity.IsAuthenticated)
             {
-                if (Directory.Exists(Server.MapPath("~/studentRecord/" + User.Identity.Name)) == false)
+                if (SorT())
                 {
-                    Directory.CreateDirectory(Server.MapPath("~/studentRecord/" + User.Identity.Name));
+                    if (file == null)
+                    {
+                        return View("../Index");
+                    }
+                    var path = Path.Combine(Request.MapPath("~/studentRecord/" + User.Identity.Name), Path.GetFileName(file.FileName));
+                    try
+                    {
+                        if (Directory.Exists(Server.MapPath("~/studentRecord/" + User.Identity.Name)) == false)
+                        {
+                            Directory.CreateDirectory(Server.MapPath("~/studentRecord/" + User.Identity.Name));
+                        }
+                        file.SaveAs(path);
+                        r.fileName = file.FileName;
+                        r.studentName = User.Identity.Name;
+                        r.filePath = path;
+                        RecordDB.Add(r);
+                        RContext.SaveChanges();
+
+                        return View();
+                    }
+                    catch
+                    {
+                        return View();
+                    }
                 }
-                file.SaveAs(path);
-                r.fileName = file.FileName;
-                r.studentName = User.Identity.Name;
-                r.filePath = path;  
-                RecordDB.Add(r);
-                RContext.SaveChanges();
-                return View();
+                else
+                    return RedirectToAction("Login", "Account");
             }
-            catch {
-                return View();
-            }
+            else
+                return RedirectToAction("Login","Account");
         }
-        public ViewResult Result()
+        public ActionResult Result()
         {
-            return View(RecordDB.Find(User.Identity.Name));
+            if (User.Identity.IsAuthenticated)
+            {
+                Record[] rr;
+                if (SorT())
+                    rr = RecordDB.FindByName(User.Identity.Name);
+                else
+                    rr = RecordDB.ToArray();
+                return View(rr);
+            }
+            else
+                return RedirectToAction("Login", "Account");
+        }
+        public Boolean SorT()
+        {
+            if (User.Identity.IsAuthenticated)
+            {
+                ApplicationDbContext context = new ApplicationDbContext();
+                var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
+                var role = UserManager.GetRoles(User.Identity.GetUserId());
+                if (role[0] == "student")
+                {
+                    return true;
+                }
+            }
+            return false;
         }
     }
 }
