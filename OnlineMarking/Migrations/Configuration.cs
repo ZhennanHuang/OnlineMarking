@@ -32,7 +32,7 @@ namespace OnlineMarking.Migrations
                 new Record {
                     studentName = "student one",
                     filePath = "/",
-                    marks = 10
+                    marks = " "
                 }
                 );
         }

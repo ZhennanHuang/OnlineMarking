@@ -47,6 +47,7 @@ namespace OnlineMarking.Controllers
         {
             return View();
         }
+        
 
         public Boolean SorT()           //make sure the user is student or teacher
         {

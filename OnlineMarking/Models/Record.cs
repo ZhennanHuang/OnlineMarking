@@ -12,7 +12,7 @@ namespace OnlineMarking.Models
         public string studentName { get; set; }
         public string filePath { get; set; }
         public string fileName { get; set; }
-        public int marks { get; set; }
+        public string marks { get; set; }
     }
 
     public static class MyExtensionMethods

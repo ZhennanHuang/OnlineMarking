@@ -7,7 +7,7 @@
     @foreach (var r in @Model)
     {
         <tr><td>@r.studentName</td><td>@r.fileName</td>
-        @if (r.marks == 0)
+        @if (r.marks == "")
         {<td> No Result; </td>}
         else
         {<td>  r.marks; </td>} </tr>
