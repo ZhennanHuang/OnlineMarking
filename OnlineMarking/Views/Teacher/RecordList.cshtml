@@ -4,11 +4,7 @@
 }
 <table>
     <tr><th>student</th><th>fileName</th><th>mark</th></tr>
-    @using (Html.BeginForm("Mark", "Teacher", FormMethod.Post, new { enctype = "multipart/form-data" }))
-    {
-        
-        <input id="button" type="submit" value="upload" />
-    }
+    
     @foreach (var r in @Model)
     {
         <tr>
@@ -20,11 +16,12 @@
             else
             {
             <td>  r.marks; </td>}
+            <td>
             @using (Html.BeginForm("Mark", "Teacher", FormMethod.Post, new { enctype = "multipart/form-data" }))
             {
                 <input type="hidden" id="recordid" name="recordid" value="@r.ID"/>
-                <input id="button" type="submit" value="upload" />
-            }
+                <input id="button" type="submit" value="mark" />
+            }</td>
         </tr>
     }
 </table>

@@ -45,9 +45,24 @@ namespace OnlineMarking.Controllers
 
         public ActionResult Mark()      //the record detail and teachers are able to mark in this view
         {
-            return View();
+            Record Rmark = new Record();
+            Rmark.marks = "A";
+            Generatemarks();
+            return View(Rmark);
         }
-        
+        private void Generatemarks()
+        {
+            ViewData["marks"] = GetMarksList();
+        }
+
+        private List<SelectListItem> GetMarksList()
+        {
+            List<SelectListItem> MarksList = new List<SelectListItem>();
+            
+            //this is give student marks（A/B/C/D/F）
+           
+            throw new NotImplementedException();
+        }
 
         public Boolean SorT()           //make sure the user is student or teacher
         {
@@ -56,7 +71,7 @@ namespace OnlineMarking.Controllers
                 ApplicationDbContext context = new ApplicationDbContext();
                 var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
                 var role = UserManager.GetRoles(User.Identity.GetUserId());
-                if (role[0] == "student")
+                if (role[0] == "teacher")
                 {
                     return true;
                 }
