@@ -31,10 +31,9 @@ namespace OnlineMarking.Controllers
             if (User.Identity.IsAuthenticated)
             {
                 Record[] rr;
-                if (SorT())
+                if (!SorT())
                     return RedirectToAction("Index", "Home");
-                else
-                    rr = RecordDB.ToArray();
+                rr = RecordDB.ToArray();
                 return View(rr);
             }
             else
@@ -42,27 +41,22 @@ namespace OnlineMarking.Controllers
         }
 
 
-
+        
         public ActionResult Mark()      //the record detail and teachers are able to mark in this view
         {
-            Record Rmark = new Record();
-            Rmark.marks = "A";
-            Generatemarks();
-            return View(Rmark);
+            //List<string> marks=new List<string>() { "A", "B", "C", "D", "F" };
+            var marks = new List<SelectListItem>()
+            {
+                (new SelectListItem() {Text = "A", Value = "A", Selected = false}),
+                (new SelectListItem() {Text = "B", Value = "B", Selected = false}),
+                (new SelectListItem() {Text = "C", Value = "C", Selected = false}),
+                (new SelectListItem() {Text = "D", Value = "D", Selected = false}),
+                (new SelectListItem() {Text = "F", Value = "F", Selected = false})
+            };
+            ViewData["marks"] = marks;
+            return View();
         }
-        private void Generatemarks()
-        {
-            ViewData["marks"] = GetMarksList();
-        }
-
-        private List<SelectListItem> GetMarksList()
-        {
-            List<SelectListItem> MarksList = new List<SelectListItem>();
-            
-            //this is give student marks（A/B/C/D/F）
-           
-            throw new NotImplementedException();
-        }
+        
 
         public Boolean SorT()           //make sure the user is student or teacher
         {
