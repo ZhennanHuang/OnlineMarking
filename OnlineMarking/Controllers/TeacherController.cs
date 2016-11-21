@@ -56,8 +56,26 @@ namespace OnlineMarking.Controllers
             ViewData["marks"] = marks;
             return View();
         }
-        
+        [HttpPost]
+        public ActionResult Mark(Record marks, HttpPostedFileBase studentname, HttpPostedFileBase mark, HttpPostedFileBase feedback)
+        {     //submit the mark information
+            if (User.Identity.IsAuthenticated)              //user should login first
+            {
+               if(studentname!=null)
+               {
+                    marks.studentName = User.Identity.Name;
+                    marks.marks = marks;
+                    marks.feedback = feedback.ToString();
 
+                    return RedirectToAction("AfterLogin", "Recordlist");
+                }
+                    ViewBag.Message = "studentname is not exist！";
+       
+                    RecordDB.Add(marks);
+                    RContext.SaveChanges();
+                    return View();
+            }
+        }
         public Boolean SorT()           //make sure the user is student or teacher
         {
             if (User.Identity.IsAuthenticated)

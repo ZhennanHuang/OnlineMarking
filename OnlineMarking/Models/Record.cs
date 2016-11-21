@@ -14,6 +14,11 @@ namespace OnlineMarking.Models
         public string fileName { get; set; }
         public string marks { get; set; }
         public string feedback { get; set; }
+
+        public static implicit operator string(Record v)
+        {
+            throw new NotImplementedException();
+        }
     }
 
     public static class MyExtensionMethods
