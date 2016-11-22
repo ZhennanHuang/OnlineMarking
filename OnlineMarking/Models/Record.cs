@@ -15,10 +15,7 @@ namespace OnlineMarking.Models
         public string marks { get; set; }
         public string feedback { get; set; }
 
-        public static implicit operator string(Record v)
-        {
-            throw new NotImplementedException();
-        }
+        
     }
 
     public static class MyExtensionMethods
@@ -26,6 +23,10 @@ namespace OnlineMarking.Models
         public static Record[] FindByName(this IEnumerable<Record> record, string sName)
         {
             return ((from r in record where r.studentName.Equals(sName) select r).ToArray());
+        }
+        public static Record FindByID(this IEnumerable<Record> record, int id)
+        {
+            return (from r in record where (r.ID == id) select r).First();
         }
     }
 }

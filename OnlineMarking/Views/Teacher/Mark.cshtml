@@ -3,13 +3,12 @@
     ViewBag.Title = "Mark";
 }
 
-<iframe name="frameMain" width="80%" height="450px" scrolling="auto" src="http://Result.cshtml"></iframe>
+<iframe name="frameMain" width="80%" height="450px" scrolling="auto" src="www.googole.com"></iframe>
 
 <h2>@ViewBag.Title.</h2>
 
 @using (Html.BeginForm("Mark", "Teacher", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
-
     <h4>Mark a student uplaoded html file work here.</h4>
     <hr />
 
@@ -17,17 +16,24 @@
 
     <!-- student id number text label-->
     <div class="form-group">
-        @Html.LabelFor(m => m.studentName, new { @class = "col-md-2 control-label" })
+        @Html.LabelFor(model => model.studentName, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            @Html.TextBoxFor(m => m.studentName, new { @class = "form-control" })
+        @Html.TextBoxFor(model=>model.studentName, new { @Value = Model.studentName,@Readonly="true"})
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.fileName, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.fileName, new { @Value = Model.fileName, @Readonly = "true" })
         </div>
     </div>
 
     <!-- mark rank pulldown control-->
     <div class="form-group">
-        @Html.Label("mark", new { @class = "col-md-2 control-label" })
+        @Html.LabelFor(model => model.marks, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            @Html.DropDownListFor(m=>m.marks,ViewData["marks"] as IEnumerable<SelectListItem>," ")
+            @Html.DropDownListFor(model => model.marks,ViewData["marks"] as IEnumerable<SelectListItem>," ")
         </div>
     </div>
 
@@ -36,17 +42,17 @@
     <!-- feedback area textbox-->
     <div class="form-group">
         <div>
-            @Html.Label("feedback", new { @class = "col -md-2 control-label" })
+            @Html.LabelFor(model => model.feedback, new { @class = "col -md-2 control-label" })
         </div>
         <div class="col-md-10">
-            @Html.TextAreaFor(m => m.feedback, new { @class = "form-control" })
+            @Html.TextAreaFor(model => model.feedback, new { @class = "form-control" })
         </div>
     </div>
 
     <!-- Mark submit button-->
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
-            <input type="submit" class="btn btn-default" value="Mark" />
+            <input id="submit"type="submit" class="btn btn-default" value="Submit" />
         </div>
     </div>
 }

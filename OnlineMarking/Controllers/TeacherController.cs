@@ -4,6 +4,7 @@ using OnlineMarking.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -42,12 +43,14 @@ namespace OnlineMarking.Controllers
 
 
         [HttpPost]
-        public ActionResult RecordList(Record r)      
+        public ActionResult RecordList(int recordid)      
         {
-            return RedirectToAction("Mark","Teacher",r.studentName);
+            
+            
+            return RedirectToAction("Mark","Teacher",new { @id=recordid});
         }
         [HttpGet]
-        public ActionResult Mark(string name)      //the record detail and teachers are able to mark in this view
+        public ActionResult Mark(int id)      //the record detail and teachers are able to mark in this view
         {
             var marks = new List<SelectListItem>()//List<string> marks=new List<string>() { "A", "B", "C", "D", "F" };
             {
@@ -57,18 +60,24 @@ namespace OnlineMarking.Controllers
                 (new SelectListItem() {Text = "D", Value = "D", Selected = false}),
                 (new SelectListItem() {Text = "F", Value = "F", Selected = false})
             };
+            Record r = RecordDB.FindByID(id);
             ViewData["marks"] = marks;
-            return View();
+            return View(r);
         }
         [HttpPost]
-        public ActionResult Mark(Record marks)
+        public ActionResult Mark(int ID, Record r)
         {     //submit the mark information
             if (!User.Identity.IsAuthenticated)              //user should login first
             {
                 return RedirectToAction("Login", "Account");
             }
+           
+            Record record = RecordDB.FindByID(r.ID);
+            record.marks = r.marks;
+            record.feedback = r.feedback;
+            RContext.Entry<Record>(record).State = EntityState.Modified;
             RContext.SaveChanges();
-            return View();
+            return RedirectToAction("RecordList","Teacher");
 
         }
         public Boolean SorT()           //make sure the user is student or teacher
