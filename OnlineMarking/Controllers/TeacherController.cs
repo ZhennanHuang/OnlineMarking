@@ -41,11 +41,15 @@ namespace OnlineMarking.Controllers
         }
 
 
-        
-        public ActionResult Mark()      //the record detail and teachers are able to mark in this view
+        [HttpPost]
+        public ActionResult RecordList(Record r)      
         {
-            //List<string> marks=new List<string>() { "A", "B", "C", "D", "F" };
-            var marks = new List<SelectListItem>()
+            return RedirectToAction("Mark","Teacher",r.studentName);
+        }
+        [HttpGet]
+        public ActionResult Mark(string name)      //the record detail and teachers are able to mark in this view
+        {
+            var marks = new List<SelectListItem>()//List<string> marks=new List<string>() { "A", "B", "C", "D", "F" };
             {
                 (new SelectListItem() {Text = "A", Value = "A", Selected = false}),
                 (new SelectListItem() {Text = "B", Value = "B", Selected = false}),
@@ -57,24 +61,15 @@ namespace OnlineMarking.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult Mark(Record marks, HttpPostedFileBase studentname, HttpPostedFileBase mark, HttpPostedFileBase feedback)
+        public ActionResult Mark(Record marks)
         {     //submit the mark information
-            if (User.Identity.IsAuthenticated)              //user should login first
+            if (!User.Identity.IsAuthenticated)              //user should login first
             {
-               if(studentname!=null)
-               {
-                    marks.studentName = User.Identity.Name;
-                    marks.marks = marks;
-                    marks.feedback = feedback.ToString();
-
-                    return RedirectToAction("AfterLogin", "Recordlist");
-                }
-                    ViewBag.Message = "studentname is not exist！";
-       
-                    RecordDB.Add(marks);
-                    RContext.SaveChanges();
-                    return View();
+                return RedirectToAction("Login", "Account");
             }
+            RContext.SaveChanges();
+            return View();
+
         }
         public Boolean SorT()           //make sure the user is student or teacher
         {

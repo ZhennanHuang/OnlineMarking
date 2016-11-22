@@ -27,7 +27,7 @@
     <div class="form-group">
         @Html.Label("mark", new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            @Html.DropDownList("marks")
+            @Html.DropDownListFor(m=>m.marks,ViewData["marks"] as IEnumerable<SelectListItem>," ")
         </div>
     </div>
 
@@ -35,7 +35,9 @@
 
     <!-- feedback area textbox-->
     <div class="form-group">
-        @Html.Label("feedback", new { @class = "col -md-2 control-label" })
+        <div>
+            @Html.Label("feedback", new { @class = "col -md-2 control-label" })
+        </div>
         <div class="col-md-10">
             @Html.TextAreaFor(m => m.feedback, new { @class = "form-control" })
         </div>

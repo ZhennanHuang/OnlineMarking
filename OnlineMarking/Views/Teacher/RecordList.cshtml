@@ -17,7 +17,7 @@
             {
             <td>  r.marks; </td>}
             <td>
-            @using (Html.BeginForm("Mark", "Teacher", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            @using (Html.BeginForm("RecordList", "Teacher", FormMethod.Post, new { enctype = "multipart/form-data" }))
             {
                 <input type="hidden" id="recordid" name="recordid" value="@r.ID"/>
                 <input id="button" type="submit" value="mark" />
