@@ -22,11 +22,15 @@ namespace OnlineMarking.Models
     {
         public static Record[] FindByName(this IEnumerable<Record> record, string sName)
         {
-            return (from r in record where r.studentName.Equals(sName) select r).ToArray();
+            if (sName != null)
+                return (from r in record where r.studentName.Equals(sName) select r).ToArray();
+            return null;
         }
         public static Record FindByID(this IEnumerable<Record> record, int id)
         {
-            return (from r in record where (r.ID == id) select r).First();
+            if(id != 0)
+                return (from r in record where (r.ID == id) select r).First();
+            return null;
         }
     }
 }

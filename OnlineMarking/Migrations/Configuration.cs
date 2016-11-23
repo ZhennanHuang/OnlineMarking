@@ -32,7 +32,8 @@ namespace OnlineMarking.Migrations
                 new Record {
                     studentName = "student one",
                     filePath = "/",
-                    marks = " "
+                    marks = "A",
+                    feedback = "very good"
                 }
                 );
         }

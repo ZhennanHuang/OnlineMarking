@@ -2,21 +2,16 @@
 @{
     ViewBag.Title = "RecordList";
 }
-<div>
-    <table>
+<table >
         <tr><th>student</th><th>fileName</th><th>mark</th></tr>
-
         @foreach (var r in @Model)
         {
+            if (r.marks == null)
+            {
             <tr>
                 <td>@r.studentName</td>
                 <td>@r.fileName</td>
-                @if (r.marks == "")
-                {
-                    <td> No Result; </td>}
-                else
-                {
-                    <td>  @r.marks; </td>}
+                <td>@r.marks</td>
                 <td>
                     @using (Html.BeginForm("RecordList", "Teacher", FormMethod.Post, new { enctype = "multipart/form-data" }))
                     {
@@ -25,6 +20,7 @@
                     }
                 </td>
             </tr>
+            }
+            else { continue; }
         }
-    </table>
-</div>
+</table>

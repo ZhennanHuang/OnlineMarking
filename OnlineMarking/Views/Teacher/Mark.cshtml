@@ -3,7 +3,7 @@
     ViewBag.Title = "Mark";
 }
 
-<iframe name="frameMain" width="80%" height="450px" scrolling="auto" src="www.googole.com"></iframe>
+<iframe name="frameMain" width="80%" height="450px" src="/@Model.filePath"></iframe>
 
 <h2>@ViewBag.Title.</h2>
 
@@ -11,7 +11,6 @@
 {
     <h4>Mark a student uplaoded html file work here.</h4>
     <hr />
-
     @Html.ValidationSummary("", new { @class = "text-danger" })
 
     <!-- student id number text label-->

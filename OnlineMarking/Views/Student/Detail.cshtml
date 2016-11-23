@@ -1,7 +1,16 @@
-﻿
+﻿@model OnlineMarking.Models.Record
 @{
     ViewBag.Title = "Detail";
 }
-
-<h2>Detail</h2>
-
+<div>
+    <div>@Html.Label("Student Name")</div>
+    <div>@Html.TextBoxFor(model => model.studentName, new { @Value = Model.studentName, @Readonly = "true" })</div>
+</div>
+<div>
+    <div>@Html.Label("Marks")</div>
+    <div>@Html.TextBoxFor(model => model.marks, new { @Value = Model.marks, @Readonly = "true" })</div>
+</div>
+<div>
+    <div>@Html.Label("Feedback")</div>
+    <div>@Html.TextAreaFor(model => model.feedback, new { @Value = Model.feedback, @Readonly = "true" })</div>
+</div>

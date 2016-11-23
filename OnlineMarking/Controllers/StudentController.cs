@@ -40,20 +40,21 @@ namespace OnlineMarking.Controllers
                     {
                         return View("../Index");
                     }
-                    var path = Path.Combine(Request.MapPath("~/studentRecord/" + User.Identity.Name), Path.GetFileName(file.FileName));
+                    string dateTime = DateTime.Now.ToString("yyyyMMddHHmmss") + DateTime.Now.Millisecond.ToString();
+                    var path = Path.Combine(Request.MapPath("~/studentRecord/" + User.Identity.Name + dateTime), Path.GetFileName(file.FileName));
                     try
                     {
-                        if (Directory.Exists(Server.MapPath("~/studentRecord/" + User.Identity.Name)) == false)
+                        if (Directory.Exists(Server.MapPath("~/studentRecord/" + User.Identity.Name+ dateTime)) == false)
                         {
-                            Directory.CreateDirectory(Server.MapPath("~/studentRecord/" + User.Identity.Name));
+                            Directory.CreateDirectory(Server.MapPath("~/studentRecord/" + User.Identity.Name+ dateTime));
                         }
                         file.SaveAs(path);
                         r.fileName = file.FileName;
                         r.studentName = User.Identity.Name;
-                        r.filePath = path;
+                        var path1 = "studentRecord/" + User.Identity.Name +"/"+ Path.GetFileName(file.FileName);
+                        r.filePath = path1;
                         RecordDB.Add(r);
                         RContext.SaveChanges();
-
                         return View();
                     }
                     catch
@@ -80,6 +81,15 @@ namespace OnlineMarking.Controllers
             }
             else
                 return RedirectToAction("Login", "Account");
+        }
+        
+        
+        [HttpPost]
+        public ActionResult Detail(int recordID,Record r)
+        {     //submit the mark information
+            Record record = RecordDB.FindByID(recordID);
+            int id = record.ID;
+            return View(record);
         }
         public Boolean SorT()                           //make sure the user is student or teacher
         {

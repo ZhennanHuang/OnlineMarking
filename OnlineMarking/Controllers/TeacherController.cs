@@ -78,7 +78,6 @@ namespace OnlineMarking.Controllers
             RContext.Entry<Record>(record).State = EntityState.Modified;
             RContext.SaveChanges();
             return RedirectToAction("RecordList","Teacher");
-
         }
         public Boolean SorT()           //make sure the user is student or teacher
         {
