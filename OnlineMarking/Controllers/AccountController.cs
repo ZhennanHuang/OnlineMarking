@@ -61,6 +61,14 @@ namespace OnlineMarking.Controllers
         public ActionResult Login(string returnUrl)
         {
             ViewBag.ReturnUrl = returnUrl;
+            if (User.Identity.IsAuthenticated)
+            {
+                if (SorT())
+                {
+                    return RedirectToAction("Result","Student");
+                }
+                return RedirectToAction("RecordList", "Teacher");
+            }
             return View();
         }
 

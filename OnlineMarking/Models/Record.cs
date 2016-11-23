@@ -22,7 +22,7 @@ namespace OnlineMarking.Models
     {
         public static Record[] FindByName(this IEnumerable<Record> record, string sName)
         {
-            return ((from r in record where r.studentName.Equals(sName) select r).ToArray());
+            return (from r in record where r.studentName.Equals(sName) select r).ToArray();
         }
         public static Record FindByID(this IEnumerable<Record> record, int id)
         {
