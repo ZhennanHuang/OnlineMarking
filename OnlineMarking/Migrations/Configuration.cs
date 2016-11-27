@@ -30,7 +30,19 @@ namespace OnlineMarking.Migrations
             //      new Person { FullName = "Rowan Miller" }
             //    );
             //
-
+            var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
+            if (!roleManager.RoleExists("teacher"))
+            {
+                var role = new IdentityRole();
+                role.Name = "teacher";
+                roleManager.Create(role);
+            }
+            if (!roleManager.RoleExists("student"))
+            {
+                var role = new IdentityRole();
+                role.Name = "student";
+                roleManager.Create(role);
+            }
             if (!context.Users.Any(u => u.Email == "studentOne@email.com")) {
                 var userStore = new UserStore<ApplicationUser>(context);
                 var userManager = new UserManager<ApplicationUser>(userStore);
