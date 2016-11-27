@@ -3,6 +3,7 @@ using OnlineMarking.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -15,6 +16,11 @@ namespace OnlineMarking
     {
         protected void Application_Start()
         {
+            //Database.SetInitializer(new DropCreateDatabaseAlways<ApplicationDbContext>());
+            //Database.SetInitializer(new Initializer.Initializer());
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<ApplicationDbContext, Migrations.Configuration>());
+            
+            
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);

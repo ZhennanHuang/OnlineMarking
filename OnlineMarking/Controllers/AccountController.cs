@@ -11,6 +11,7 @@ using Microsoft.Owin.Security;
 using OnlineMarking.Models;
 using System.Collections.Generic;
 using Microsoft.AspNet.Identity.EntityFramework;
+using System.Data.Entity;
 
 namespace OnlineMarking.Controllers
 {
@@ -23,6 +24,7 @@ namespace OnlineMarking.Controllers
         public AccountController()
         {
             context = new ApplicationDbContext();
+            
         }
 
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
@@ -86,7 +88,8 @@ namespace OnlineMarking.Controllers
 
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
-            var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+            var user = context.Users.Where(u => u.Email.Equals(model.Email)).Single();
+            var result = await SignInManager.PasswordSignInAsync(user.UserName, model.Password, model.RememberMe, shouldLockout: false);
             switch (result)
             {
                 case SignInStatus.Success:
@@ -169,7 +172,6 @@ namespace OnlineMarking.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
-            
             IEnumerable<SelectListItem> basetypes = context.Roles.Select(b => new SelectListItem { Value = b.Name, Text = b.Name });
             ViewData["Name"] = new SelectList(basetypes, "Value", "Text");
             return View();
