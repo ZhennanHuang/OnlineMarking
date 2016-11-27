@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OnlineMarking.Models;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -17,7 +18,6 @@ namespace OnlineMarking.Models
 
         
     }
-
     public static class MyExtensionMethods
     {
         public static Record[] FindByName(this IEnumerable<Record> record, string sName)

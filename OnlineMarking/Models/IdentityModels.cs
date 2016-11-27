@@ -21,7 +21,7 @@ namespace OnlineMarking.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false){}
+            : base("DefaultConnection", throwIfV1Schema: false){ }
         public DbSet<Record> RecordDB { get; set; }
         public static ApplicationDbContext Create()
         {

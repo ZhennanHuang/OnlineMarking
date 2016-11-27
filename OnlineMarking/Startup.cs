@@ -3,6 +3,7 @@ using Owin;
 using OnlineMarking.Models;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity;
+using System.Data.Entity;
 
 [assembly: OwinStartupAttribute(typeof(OnlineMarking.Startup))]
 namespace OnlineMarking
@@ -12,8 +13,7 @@ namespace OnlineMarking
         public void Configuration(IAppBuilder app)
         {
             ConfigureAuth(app);
-            
+            Database.SetInitializer(new Initializer.Initializer());
         }
-        
     }
 }

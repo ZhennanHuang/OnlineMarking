@@ -1,5 +1,8 @@
-﻿using System;
+﻿using OnlineMarking.Migrations;
+using OnlineMarking.Models;
+using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -18,4 +21,5 @@ namespace OnlineMarking
             BundleConfig.RegisterBundles(BundleTable.Bundles);
         }
     }
+    
 }

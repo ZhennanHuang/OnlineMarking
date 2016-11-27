@@ -13,35 +13,27 @@ namespace OnlineMarking.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;
+            AutomaticMigrationDataLossAllowed = true;
             ContextKey = "OnlineMarking.Models.ApplicationDbContext";
         }
 
         protected override void Seed(OnlineMarking.Models.ApplicationDbContext context)
         {
-            //  This method will be called after migrating to the latest version.
-
-            //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
-            //  to avoid creating duplicate seed data. E.g.
-            //
-            //    context.People.AddOrUpdate(
-            //      p => p.FullName,
-            //      new Person { FullName = "Andrew Peters" },
-            //      new Person { FullName = "Brice Lambson" },
-            //      new Person { FullName = "Rowan Miller" }
-            //    );
-            //
-            var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
-            if (!roleManager.RoleExists("teacher"))
+            if (!context.Roles.Any(r=>r.Name=="teacher"))
             {
+                var store = new RoleStore<IdentityRole>(context);
+                var manager = new RoleManager<IdentityRole>(store);
                 var role = new IdentityRole();
                 role.Name = "teacher";
-                roleManager.Create(role);
+                manager.CreateAsync(role);
             }
-            if (!roleManager.RoleExists("student"))
+            if (!context.Roles.Any(r => r.Name == "student"))
             {
+                var store = new RoleStore<IdentityRole>(context);
+                var manager = new RoleManager<IdentityRole>(store);
                 var role = new IdentityRole();
                 role.Name = "student";
-                roleManager.Create(role);
+                manager.CreateAsync(role);
             }
             if (!context.Users.Any(u => u.Email == "studentOne@email.com")) {
                 var userStore = new UserStore<ApplicationUser>(context);
@@ -51,7 +43,7 @@ namespace OnlineMarking.Migrations
                     UserName = "studentOne",
                     Email = "studentOne@email.com",
                 };
-                userManager.Create(newUser, "111111`qQ");
+                userManager.CreateAsync(newUser, "111111`qQ");
                 userManager.AddToRole(newUser.Id, "student");
             }
             if (!context.Users.Any(u => u.Email == "studentTwo@email.com"))
@@ -63,7 +55,7 @@ namespace OnlineMarking.Migrations
                     UserName = "studentTwo",
                     Email = "studentTwo@email.com",
                 };
-                userManager.Create(newUser, "222222`qQ");
+                userManager.CreateAsync(newUser, "222222`qQ");
                 userManager.AddToRole(newUser.Id, "student");
             }
             if (!context.Users.Any(u => u.Email == "teacher@email.com"))
@@ -75,7 +67,7 @@ namespace OnlineMarking.Migrations
                     UserName = "teacher",
                     Email = "teacher@email.com",
                 };
-                userManager.Create(newUser, "333333`qQ");
+                userManager.CreateAsync(newUser, "333333`qQ");
                 userManager.AddToRole(newUser.Id, "teacher");
             }
             /*context.RecordDB.AddOrUpdate(i => i.filePath,
