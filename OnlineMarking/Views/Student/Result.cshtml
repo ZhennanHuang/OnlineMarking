@@ -2,20 +2,23 @@
 @{
     ViewBag.Title = "Result";
 }
-<div>
-    <table>
-        <tr><th>student</th><th>fileName</th><th>mark</th></tr>
+@Styles.Render("~/Content/css")
+<div style="margin-top:50px;margin-bottom:50px;">
+    <table class="table">
+        <tr><th><h3>student</h3></th><th><h3>fileName</h3></th><th><h3>mark</h3></th></tr>
         @foreach (var r in @Model)
         {
             <tr>
                 <td>@r.studentName</td>
                 <td>@r.fileName</td>
-                @if (r.marks == null)
-                {
-                    <td> No Result </td>}
-                else
-                {
-                    <td>  @r.marks </td>}
+            @if (r.marks == null)
+            {
+                    <td> No Result </td>
+            }
+            else
+            {
+                    <td>  @r.marks </td>
+            }
                 <td>
                     @using (Html.BeginForm("Detail", "Student", FormMethod.Post, new { enctype = "multipart/form-data" }))
                     {
@@ -24,6 +27,6 @@
                     }
                 </td>
             </tr>
-        }
+            }
     </table>
 </div>

@@ -41,17 +41,17 @@ namespace OnlineMarking.Controllers
                         return View("../Index");
                     }
                     string dateTime = DateTime.Now.ToString("yyyyMMddHHmmss") + DateTime.Now.Millisecond.ToString();
-                    var path = Path.Combine(Request.MapPath("~/studentRecord/" + User.Identity.Name + dateTime), Path.GetFileName(file.FileName));
+                    var path = Path.Combine(Request.MapPath("~/studentRecord/" + User.Identity.Name + "/" + dateTime + "/"),Path.GetFileName(file.FileName));
                     try
                     {
-                        if (Directory.Exists(Server.MapPath("~/studentRecord/" + User.Identity.Name+ dateTime)) == false)
+                        if (Directory.Exists(Server.MapPath("~/studentRecord/" + User.Identity.Name+"/"+dateTime)) == false)
                         {
-                            Directory.CreateDirectory(Server.MapPath("~/studentRecord/" + User.Identity.Name+ dateTime));
+                            Directory.CreateDirectory(Server.MapPath("~/studentRecord/" + User.Identity.Name+"/"+dateTime));
                         }
                         file.SaveAs(path);
                         r.fileName = file.FileName;
                         r.studentName = User.Identity.Name;
-                        var path1 = "studentRecord/" + User.Identity.Name +"/"+ Path.GetFileName(file.FileName);
+                        var path1 = "studentRecord/" + User.Identity.Name +"/"+dateTime+"/"+ Path.GetFileName(file.FileName);
                         r.filePath = path1;
                         RecordDB.Add(r);
                         RContext.SaveChanges();
