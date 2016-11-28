@@ -2,7 +2,10 @@
 @{
     ViewBag.Title = "RecordList";
 }
-<table >
+@Styles.Render("~/Content/myCss.css")
+@Styles.Render("~/Content/css")
+<div><h1>Submission List</h1></div>
+<table class="table">
         <tr><th>student</th><th>fileName</th><th>mark</th></tr>
         @foreach (var r in @Model)
         {
@@ -11,9 +14,8 @@
             <tr>
                 <td>@r.studentName</td>
                 <td>@r.fileName</td>
-                <td>@r.marks</td>
                 <td>
-                    @using (Html.BeginForm("RecordList", "Teacher", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    @using (Html.BeginForm("RecordList", "Lecturer", FormMethod.Post, new { enctype = "multipart/form-data" }))
                     {
                         <input type="hidden" id="recordid" name="recordid" value="@r.ID" />
                         <input id="button" type="submit" value="mark" />

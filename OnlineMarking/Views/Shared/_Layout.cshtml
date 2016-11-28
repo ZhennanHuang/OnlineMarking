@@ -25,8 +25,7 @@
                     @if (User.Identity.IsAuthenticated) { 
                         <li>@Html.ActionLink("ViewResult", "Result", "Student", routeValues: null, htmlAttributes: new { id = "resultlink" })</li>
                         <li>@Html.ActionLink("Upload", "Upload", "Student", routeValues: null, htmlAttributes: new { id = "uploadlink" })</li>
-                        <li>@Html.ActionLink("RecordList", "RecordList", "Teacher", routeValues: null, htmlAttributes: new { id = "recordslistlink" })</li>
-                        <li>@Html.ActionLink("Mark", "Mark", "Teacher", routeValues: null, htmlAttributes: new { id = "marklink" })</li>
+                        <li>@Html.ActionLink("RecordList", "RecordList", "Lecturer", routeValues: null, htmlAttributes: new { id = "recordslistlink" })</li>
                     }
                 </ul>
                 @Html.Partial("_LoginPartial")

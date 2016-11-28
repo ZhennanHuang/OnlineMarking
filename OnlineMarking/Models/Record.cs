@@ -1,6 +1,8 @@
 ﻿using OnlineMarking.Models;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
 using System.Linq;
 using System.Web;
@@ -9,14 +11,20 @@ namespace OnlineMarking.Models
 {
     public class Record
     {
+        [Required]
+        [Key]
         public int ID { get; set; }
+        [Required]
+        [ForeignKey("User")]
+        public string UserId { get; set; }
+        [Required]
         public string studentName { get; set; }
+        [Required]
         public string filePath { get; set; }
         public string fileName { get; set; }
         public string marks { get; set; }
-        public string feedback { get; set; }
-
-        
+        public string feedback { get; set; }  
+        public virtual ApplicationUser User { get; set; }
     }
     public static class MyExtensionMethods
     {

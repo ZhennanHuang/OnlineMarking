@@ -2,9 +2,28 @@
 @{
     ViewBag.Title = "Upload";
 }
-@using (Html.BeginForm("Upload", "Student", FormMethod.Post, new { enctype = "multipart/form-data" })) {
-    <input id="file" name="file" type="file" accept="text/html"/>
-    <input id="submit" type ="submit" value="upload" />
-}
+@Styles.Render("~/Content/myCss.css")
+@Styles.Render("~/Content/css")
+<table class="table">
+    <tr><td><h1>Upload</h1></td></tr>
+    @using (Html.BeginForm("Upload", "Student", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <tr>
+            <td>
+                <input id="file" name="file" type="file" accept="text/html" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input id="submit" type="submit" value="upload" class="" />
+            </td>
+        </tr>
+    }
+</table>
+
+
+
+
+
 
 

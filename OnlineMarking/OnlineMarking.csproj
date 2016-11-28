@@ -172,7 +172,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\StudentController.cs" />
-    <Compile Include="Controllers\TeacherController.cs" />
+    <Compile Include="Controllers\LectureerController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -223,6 +223,7 @@
     <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
+    <Content Include="studentRecord\studentOne\Google.html" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -260,8 +261,8 @@
     <Content Include="Views\Student\Result.cshtml" />
     <Content Include="Views\Student\Upload.cshtml" />
     <Content Include="Views\Student\Detail.cshtml" />
-    <Content Include="Views\Teacher\Mark.cshtml" />
-    <Content Include="Views\Teacher\RecordList.cshtml" />
+    <Content Include="Views\Lecturer\Mark.cshtml" />
+    <Content Include="Views\Lecturer\RecordList.cshtml" />
     <Content Include="Scripts\jquery-3.1.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.1.1.min.map" />
   </ItemGroup>

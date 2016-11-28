@@ -51,11 +51,12 @@ namespace OnlineMarking.Controllers
                         file.SaveAs(path);
                         r.fileName = file.FileName;
                         r.studentName = User.Identity.Name;
+                        r.UserId = User.Identity.GetUserId();
                         var path1 = "studentRecord/" + User.Identity.Name +"/"+dateTime+"/"+ Path.GetFileName(file.FileName);
                         r.filePath = path1;
                         RecordDB.Add(r);
                         RContext.SaveChanges();
-                        return View();
+                        return RedirectToAction("Result","Student");
                     }
                     catch
                     {
@@ -91,7 +92,7 @@ namespace OnlineMarking.Controllers
             int id = record.ID;
             return View(record);
         }
-        public Boolean SorT()                           //make sure the user is student or teacher
+        public Boolean SorT()                           //make sure the user is student or Lecturer
         {
             if (User.Identity.IsAuthenticated)
             {

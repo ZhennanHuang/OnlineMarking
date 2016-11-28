@@ -5,22 +5,26 @@
 @Styles.Render("~/Content/myCss.css")
 @Styles.Render("~/Content/css")
 <body class="bodyD">
+    <div><h1>Submit Detail</h1></div>
     <div class="divD">
-        <iframe class="iframeOne" name="frameMain" src="/@Model.filePath"></iframe>
-        
     </div>
     <div>
-        <table class="table" style="width:85%;">
+        <table class="table" style="margin-left:auto">
             <tr>
-                <td>@Html.Label("Student Name")</td>
+                <td colspan="2">
+                <iframe class="iframeOne" name="frameMain" src="/@Model.filePath"></iframe>
+                </td>
+            </tr>
+            <tr>
+                <td>@Html.Label("student name")</td>
                 <td>@Html.TextBoxFor(model => model.studentName, new { @Value = Model.studentName, @Readonly = "true" })</td>
             </tr>
             <tr>
-                <td>@Html.Label("Marks")</td>
+                <td>@Html.Label("marks")</td>
                 <td>@Html.TextBoxFor(model => model.marks, new { @Value = Model.marks, @Readonly = "true" })</td>
             </tr>
             <tr>
-                <td>@Html.Label("Feedback")</td>
+                <td>@Html.Label("feedback")</td>
                 <td>@Html.TextAreaFor(model => model.feedback, new { @Value = Model.feedback, @Readonly = "true", @class = "TextD" })</td>
             </tr>
         </table>

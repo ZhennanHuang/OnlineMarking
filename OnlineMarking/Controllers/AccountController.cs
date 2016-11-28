@@ -69,7 +69,7 @@ namespace OnlineMarking.Controllers
                 {
                     return RedirectToAction("Result","Student");
                 }
-                return RedirectToAction("RecordList", "Teacher");
+                return RedirectToAction("RecordList", "Lecturer");
             }
             return View();
         }
@@ -97,7 +97,7 @@ namespace OnlineMarking.Controllers
                         if (SorT())
                             return RedirectToAction("Result","Student");
                         else 
-                            return RedirectToAction("RecordList","Teacher");
+                            return RedirectToAction("RecordList","Lecturer");
                     }
                     //return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:

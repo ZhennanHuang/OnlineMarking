@@ -11,18 +11,18 @@ using System.Web.Mvc;
 
 namespace OnlineMarking.Controllers
 {
-    public class TeacherController : Controller
+    public class LecturerController : Controller
     {
         private ApplicationDbContext RContext;
         private DbSet<Record> RecordDB;
         private Record[] Records;
-        public TeacherController()
+        public LecturerController()
         {
             RContext = new Models.ApplicationDbContext();
             RecordDB = RContext.RecordDB;
             Records = RecordDB.ToArray();
         }
-        // GET: Teacher
+        // GET: Lecturer
         public ActionResult Index()
         {
             return View();
@@ -47,10 +47,10 @@ namespace OnlineMarking.Controllers
         {
             
             
-            return RedirectToAction("Mark","Teacher",new { @id=recordid});
+            return RedirectToAction("Mark","Lecturer",new { @id=recordid});
         }
         [HttpGet]
-        public ActionResult Mark(int id)      //the record detail and teachers are able to mark in this view
+        public ActionResult Mark(int id)      //the record detail and Lecturers are able to mark in this view
         {
             var marks = new List<SelectListItem>()//List<string> marks=new List<string>() { "A", "B", "C", "D", "F" };
             {
@@ -77,16 +77,16 @@ namespace OnlineMarking.Controllers
             record.feedback = r.feedback;
             RContext.Entry<Record>(record).State = EntityState.Modified;
             RContext.SaveChanges();
-            return RedirectToAction("RecordList","Teacher");
+            return RedirectToAction("RecordList","Lecturer");
         }
-        public Boolean SorT()           //make sure the user is student or teacher
+        public Boolean SorT()           //make sure the user is student or Lecturer
         {
             if (User.Identity.IsAuthenticated)
             {
                 ApplicationDbContext context = new ApplicationDbContext();
                 var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
                 var role = UserManager.GetRoles(User.Identity.GetUserId());
-                if (role[0] == "teacher")
+                if (role[0] == "Lecturer")
                 {
                     return true;
                 }

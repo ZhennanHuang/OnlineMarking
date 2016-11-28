@@ -4,6 +4,7 @@
 }
 @Styles.Render("~/Content/css")
 <div style="margin-top:50px;margin-bottom:50px;">
+    <div><h2>Student Upload List</h2></div>
     <table class="table">
         <tr><th><h3>student</h3></th><th><h3>fileName</h3></th><th><h3>mark</h3></th></tr>
         @foreach (var r in @Model)
@@ -28,5 +29,5 @@
                 </td>
             </tr>
             }
-    </table>
+</table>
 </div>

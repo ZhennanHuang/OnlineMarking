@@ -18,12 +18,12 @@ namespace OnlineMarking.Migrations
         }
         protected override void Seed(OnlineMarking.Models.ApplicationDbContext context)
         {
-/*            if (!context.Roles.Any(r=>r.Name=="teacher"))
+/*            if (!context.Roles.Any(r=>r.Name=="Lecturer"))
             {
                 var store = new RoleStore<IdentityRole>(context);
                 var manager = new RoleManager<IdentityRole>(store);
                 var role = new IdentityRole();
-                role.Name = "teacher";
+                role.Name = "Lecturer";
                 manager.Create(role);
                 context.SaveChanges();
             }
@@ -48,6 +48,15 @@ namespace OnlineMarking.Migrations
                 };
                 userManager.Create(newUser, "111111`qQ");
                 context.Roles.AddOrUpdate(x => x.Name, new IdentityRole { Name = "student" });
+                context.RecordDB.AddOrUpdate(i => i.filePath, new Record
+                {
+                    UserId = newUser.Id,
+                    studentName = "studentOne",
+                    filePath = "studentRecord/"+newUser.UserName+"/Google.html",
+                    fileName = "Google.html",
+                    marks = "A",
+                    feedback = "very good"
+                });
                 context.SaveChanges();
                 userManager.AddToRole(newUser.Id, "student");
                 
@@ -66,29 +75,21 @@ namespace OnlineMarking.Migrations
                 userManager.AddToRole(newUser.Id, "student");
                 
             }
-            if (!context.Users.Any(u => u.Email == "teacher@email.com"))
+            if (!context.Users.Any(u => u.Email == "lecturer@email.com"))
             {
                 var userStore = new UserStore<ApplicationUser>(context);
                 var userManager = new UserManager<ApplicationUser>(userStore);
                 var newUser = new ApplicationUser()
                 {
-                    UserName = "teacher",
-                    Email = "teacher@email.com",
+                    UserName = "lecturer",
+                    Email = "lecturer@email.com",
                     EmailConfirmed = true
                 };
                 userManager.Create(newUser, "333333`qQ");
-                context.Roles.AddOrUpdate(x => x.Name, new IdentityRole { Name = "teacher" });
+                context.Roles.AddOrUpdate(x => x.Name, new IdentityRole { Name = "lecturer" });
                 context.SaveChanges();
-                userManager.AddToRole(newUser.Id, "teacher");
+                userManager.AddToRole(newUser.Id, "lecturer");
             }
-            /*context.RecordDB.AddOrUpdate(i => i.filePath,
-                new Record {
-                    studentName = "studentOne",
-                    filePath = "/",
-                    marks = "A",
-                    feedback = "very good"
-                }
-                );*/
         }
     }
 }
