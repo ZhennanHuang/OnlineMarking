@@ -22,6 +22,7 @@ namespace OnlineMarking.Models
         [Required]
         public string filePath { get; set; }
         public string fileName { get; set; }
+        [Required]
         public string marks { get; set; }
         [StringLength(200, MinimumLength = 50)]
         public string feedback { get; set; }  

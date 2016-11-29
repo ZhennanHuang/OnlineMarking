@@ -26,5 +26,10 @@
     color:#f00;
     font-weight:bold;
 }
+input.upload {
+    font-size:15px;
+    cursor:pointer;
+    line-height:1.42857143;
+}
 
 

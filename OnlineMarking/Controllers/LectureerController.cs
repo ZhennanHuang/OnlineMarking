@@ -16,7 +16,7 @@ namespace OnlineMarking.Controllers
         private ApplicationDbContext RContext;
         private DbSet<Record> RecordDB;
         private Record[] Records;
-        List<SelectListItem> marks = new List<SelectListItem>()//List<string> marks=new List<string>() { "A", "B", "C", "D", "F" };
+        List<SelectListItem> marks = new List<SelectListItem>() //List<string> marks=new List<string>() { "A", "B", "C", "D", "F" };
                 {
                     (new SelectListItem() {Text = "A", Value = "A", Selected = false}),
                     (new SelectListItem() {Text = "B", Value = "B", Selected = false}),
@@ -35,7 +35,7 @@ namespace OnlineMarking.Controllers
         {
             return View();
         }
-        public ActionResult RecordList() {              //view all the record that uploaded by students
+        public ActionResult RecordList() {                  //view all the record that uploaded by students
 
             if (User.Identity.IsAuthenticated)
             {
@@ -53,14 +53,12 @@ namespace OnlineMarking.Controllers
         [HttpPost]
         public ActionResult RecordList(int recordid)
         {
-
-
             return RedirectToAction("Mark", "Lecturer", new { @id = recordid });
         }
         [HttpGet]
-        public ActionResult Mark(int id)      //the record detail and Lecturers are able to mark in this view
+        public ActionResult Mark(int id)                                                //the record detail and Lecturers are able to mark in this view
         {
-            var marks = new List<SelectListItem>()//List<string> marks=new List<string>() { "A", "B", "C", "D", "F" };
+            var marks = new List<SelectListItem>()                                      //A List of grades, which will generate a dropdownlist
             {
                 (new SelectListItem() {Text = "A", Value = "A", Selected = false}),
                 (new SelectListItem() {Text = "B", Value = "B", Selected = false}),
@@ -76,7 +74,7 @@ namespace OnlineMarking.Controllers
         public ActionResult Mark(int ID, Record r)
         {     //submit the mark information
 
-            if (!User.Identity.IsAuthenticated)              //user should login first
+            if (!User.Identity.IsAuthenticated)                                         //user should login first
             {
                 return RedirectToAction("Login", "Account");
             }
@@ -85,23 +83,15 @@ namespace OnlineMarking.Controllers
             record.marks = r.marks;
             record.feedback = r.feedback;
             ViewData["marks"] = marks;
-            /*if ((record.feedback==null)||(record.feedback.Length > 200) || (record.feedback.Length < 50))
-            {
-                ModelState.AddModelError("feedback", "Feedback should be a string with length between 50 and 200!");
-            }
-            if (record.marks==null)
-            {
-                ModelState.AddModelError("markNull", "Marks should not be null!");
-            }*/
             if (!ModelState.IsValid) {
-                return View(r);
+                return View(record);
             }
             RContext.Entry<Record>(record).State = EntityState.Modified;
             RContext.SaveChanges();
             return RedirectToAction("RecordList", "Lecturer");
         }
 
-        public Boolean SorT()           //make sure the user is student or Lecturer
+        public Boolean SorT()                                   //make sure the user is student or Lecturer
         {
             if (User.Identity.IsAuthenticated)
             {

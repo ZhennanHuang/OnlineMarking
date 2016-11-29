@@ -9,15 +9,18 @@
     @using (Html.BeginForm("Upload", "Student", FormMethod.Post, new { enctype = "multipart/form-data" }))
     {
         <tr>
-            <td>
-                <input id="file" name="file" type="file" accept="text/html" />
+            <td><h3>Please select a html file</h3>
+                <input id="file" name="file" type="file" accept="text/html" required="required" class="upload" />
             </td>
         </tr>
         <tr>
             <td>
-                <input id="submit" type="submit" value="upload" class="" />
+                <input id="submit" type="submit" value="upload" style="font:bold" />
             </td>
         </tr>
+    }
+    @if (ViewData.ModelState["type"]!= null) {
+        <tr><td>@Html.ValidationMessage("type",new { @class = "text-danger" })</td></tr>
     }
 </table>
 

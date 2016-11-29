@@ -21,11 +21,10 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     @if (User.Identity.IsAuthenticated) { 
                         <li>@Html.ActionLink("ViewResult", "Result", "Student", routeValues: null, htmlAttributes: new { id = "resultlink" })</li>
                         <li>@Html.ActionLink("Upload", "Upload", "Student", routeValues: null, htmlAttributes: new { id = "uploadlink" })</li>
-                        <li>@Html.ActionLink("RecordList", "RecordList", "Lecturer", routeValues: null, htmlAttributes: new { id = "recordslistlink" })</li>
+                        <li>@Html.ActionLink("Waiting List", "RecordList", "Lecturer", routeValues: null, htmlAttributes: new { id = "recordslistlink" })</li>
                     }
                 </ul>
                 @Html.Partial("_LoginPartial")

@@ -9,7 +9,7 @@
         <tr><th>student</th><th>fileName</th><th>mark</th></tr>
         @foreach (var r in @Model)
         {
-            if (r.marks == null)
+            if (r.marks == "Waiting")
             {
             <tr>
                 <td>@r.studentName</td>

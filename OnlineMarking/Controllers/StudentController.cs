@@ -19,22 +19,25 @@ namespace OnlineMarking.Controllers
         public StudentController() {
             RContext = new Models.ApplicationDbContext();
             RecordDB = RContext.RecordDB;                   
-            Records = RecordDB.ToArray();                   //all records
+            Records = RecordDB.ToArray();                                                   
         }
         // GET: Student
-        public ActionResult Upload()                        //visit the upload view
+        public ActionResult Upload()                                                        //visit the upload view
         {
-            if (User.Identity.IsAuthenticated)              //user should login before visit upload view
+            if (User.Identity.IsAuthenticated)                                              //user should login before visit upload view
                 return View();
             else
                 return RedirectToAction("Login","Account");
         }
         [HttpPost]
-        public ActionResult Upload(Record r, HttpPostedFileBase file) {     //submit the upload information
-
-            if (User.Identity.IsAuthenticated)              //user should login first
+        public ActionResult Upload(Record r, HttpPostedFileBase file) {                     //submit the upload information
+            if (User.Identity.IsAuthenticated)                                              //user should login first
             {
-                if (SorT())                                 //if user is a student
+                if (!Path.GetExtension(file.FileName).Equals("html")) {
+                    ModelState.AddModelError("type","Error file, you should upload a html file!");      //If the type of file is not html, return error message.
+                    return View();
+                }
+                if (SorT())                                                                 //if user is a student
                 {
                     if (file == null)
                     {
@@ -42,39 +45,45 @@ namespace OnlineMarking.Controllers
                     }
                     string dateTime = DateTime.Now.ToString("yyyyMMddHHmmss") + DateTime.Now.Millisecond.ToString();
                     var path = Path.Combine(Request.MapPath("~/studentRecord/" + User.Identity.Name + "/" + dateTime + "/"),Path.GetFileName(file.FileName));
-                    try
+                    using (var transaction = RContext.Database.BeginTransaction())                          //use transaction to guarantee database integrity.
                     {
-                        if (Directory.Exists(Server.MapPath("~/studentRecord/" + User.Identity.Name+"/"+dateTime)) == false)
+                        try
                         {
-                            Directory.CreateDirectory(Server.MapPath("~/studentRecord/" + User.Identity.Name+"/"+dateTime));
+                            if (Directory.Exists(Server.MapPath("~/studentRecord/" + User.Identity.Name + "/" + dateTime)) == false)        
+                            {
+                                Directory.CreateDirectory(Server.MapPath("~/studentRecord/" + User.Identity.Name + "/" + dateTime));
+                            }
+                            file.SaveAs(path);                                                                                      //save the file into a special directory.
+                            r.fileName = file.FileName;
+                            r.studentName = User.Identity.Name;
+                            r.UserId = User.Identity.GetUserId();
+                            r.marks = "Waiting";
+                            var path1 = "studentRecord/" + User.Identity.Name + "/" + dateTime + "/" + Path.GetFileName(file.FileName);     //Path1 will be stored into database and it will be used 
+                            r.filePath = path1;                                                                                             //when we need to find the file
+                            RecordDB.Add(r);
+                            RContext.SaveChanges();
+                            return RedirectToAction("Result", "Student");
                         }
-                        file.SaveAs(path);
-                        r.fileName = file.FileName;
-                        r.studentName = User.Identity.Name;
-                        r.UserId = User.Identity.GetUserId();
-                        var path1 = "studentRecord/" + User.Identity.Name +"/"+dateTime+"/"+ Path.GetFileName(file.FileName);
-                        r.filePath = path1;
-                        RecordDB.Add(r);
-                        RContext.SaveChanges();
-                        return RedirectToAction("Result","Student");
+                        catch
+                        {
+                            transaction.Rollback();
+                        }
                     }
-                    catch
-                    {
-                        return View();
-                    }
+                    return View();
+
                 }
                 else
-                    return RedirectToAction("Login", "Account");
+                    return RedirectToAction("Index", "Home");
             }
             else
-                return RedirectToAction("Login","Account");
+                return RedirectToAction("Index","Home");
         }
-        public ActionResult Result()                    //visit the view of the results of student themselves
+        public ActionResult Result()                                                           //visit the view of the results of student themselves
         {
             if (User.Identity.IsAuthenticated)
             {
                 Record[] rr;
-                if (SorT())                             //if the user is a student
+                if (SorT())                                                                    //if the user is a student
                     rr = RecordDB.FindByUserId(User.Identity.GetUserId());
                 else
                     rr = RecordDB.ToArray();
@@ -86,13 +95,13 @@ namespace OnlineMarking.Controllers
         
         
         [HttpPost]
-        public ActionResult Detail(int recordID,Record r)
+        public ActionResult Detail(int recordID,Record r)                                       //return the view of Detail which student can see their html
         {     //submit the mark information
             Record record = RecordDB.FindByID(recordID);
             int id = record.ID;
             return View(record);
         }
-        public Boolean SorT()                           //make sure the user is student or Lecturer
+        public Boolean SorT()                                                                   //make sure the user is student or Lecturer
         {
             if (User.Identity.IsAuthenticated)
             {
@@ -108,3 +117,7 @@ namespace OnlineMarking.Controllers
         }
     }
 }
+
+
+
+
