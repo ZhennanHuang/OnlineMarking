@@ -75,7 +75,7 @@ namespace OnlineMarking.Controllers
             {
                 Record[] rr;
                 if (SorT())                             //if the user is a student
-                    rr = RecordDB.FindByName(User.Identity.Name);
+                    rr = RecordDB.FindByUserId(User.Identity.GetUserId());
                 else
                     rr = RecordDB.ToArray();
                 return View(rr);

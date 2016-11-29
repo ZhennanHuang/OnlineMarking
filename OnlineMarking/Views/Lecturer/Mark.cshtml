@@ -11,15 +11,15 @@
             <iframe class="iframeOne" name="frameMain" src="/@Model.filePath"></iframe>
         </td>
     </tr>
+    @Html.ValidationSummary(true)
     @using (Html.BeginForm("Mark", "Lecturer", FormMethod.Post))
     {
     <tr>
         <td>
-            <!--Html.ValidationSummary("", new { class = "text-danger" })-->
             @Html.LabelFor(model => model.studentName)
         </td>
         <td>
-            @Html.TextBoxFor(model => model.studentName, new { @Value = Model.studentName, @Readonly = "true" ,@class = "textBox" })
+            @Html.TextBoxFor(model => model.studentName, new { @Value = Model.studentName, @Readonly = "true" })
         </td>
     </tr>
     <tr>
@@ -27,7 +27,7 @@
             @Html.LabelFor(model => model.fileName)
         </td>
         <td>
-            @Html.TextBoxFor(model => model.fileName, new { @Value = Model.fileName, @Readonly = "true",@class = "textBox"  })
+            @Html.TextBoxFor(model => model.fileName, new { @Value = Model.fileName, @Readonly = "true"})
         </td>
     </tr>
     <tr>
@@ -38,12 +38,13 @@
             @Html.DropDownListFor(model => model.marks, ViewData["marks"] as IEnumerable<SelectListItem>, " ")
         </td>
     </tr>
-    <tr>
+    <tr class="thD">
         <td>
             @Html.LabelFor(model => model.feedback)
         </td>
         <td>
             @Html.TextAreaFor(model => model.feedback,new { @class = "TextD" })
+            
         </td>
     </tr>
     <tr>
@@ -52,8 +53,12 @@
             <input id="submit" type="submit" class="btn btn-default" value="Submit" />
         </td>
     </tr>
+
+   
     }
 </table>
+<span asp-validation-for="mark">@Html.ValidationMessage("markNull")</span>
+<span asp-validation-for="feedback">@Html.ValidationMessage("feedback")</span>
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }

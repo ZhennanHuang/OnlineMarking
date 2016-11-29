@@ -23,15 +23,16 @@ namespace OnlineMarking.Models
         public string filePath { get; set; }
         public string fileName { get; set; }
         public string marks { get; set; }
+        [StringLength(200, MinimumLength = 50)]
         public string feedback { get; set; }  
         public virtual ApplicationUser User { get; set; }
     }
     public static class MyExtensionMethods
     {
-        public static Record[] FindByName(this IEnumerable<Record> record, string sName)
+        public static Record[] FindByUserId(this IEnumerable<Record> record, string UserId)
         {
-            if (sName != null)
-                return (from r in record where r.studentName.Equals(sName) select r).ToArray();
+            if (UserId != null)
+                return (from r in record where r.UserId.Equals(UserId) select r).ToArray();
             return null;
         }
         public static Record FindByID(this IEnumerable<Record> record, int id)

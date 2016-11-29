@@ -16,6 +16,14 @@ namespace OnlineMarking.Controllers
         private ApplicationDbContext RContext;
         private DbSet<Record> RecordDB;
         private Record[] Records;
+        List<SelectListItem> marks = new List<SelectListItem>()//List<string> marks=new List<string>() { "A", "B", "C", "D", "F" };
+                {
+                    (new SelectListItem() {Text = "A", Value = "A", Selected = false}),
+                    (new SelectListItem() {Text = "B", Value = "B", Selected = false}),
+                    (new SelectListItem() {Text = "C", Value = "C", Selected = false}),
+                    (new SelectListItem() {Text = "D", Value = "D", Selected = false}),
+                    (new SelectListItem() {Text = "F", Value = "F", Selected = false})
+                };
         public LecturerController()
         {
             RContext = new Models.ApplicationDbContext();
@@ -28,7 +36,7 @@ namespace OnlineMarking.Controllers
             return View();
         }
         public ActionResult RecordList() {              //view all the record that uploaded by students
-        
+
             if (User.Identity.IsAuthenticated)
             {
                 Record[] rr;
@@ -38,16 +46,16 @@ namespace OnlineMarking.Controllers
                 return View(rr);
             }
             else
-                return RedirectToAction("Login", "Account");
+                return RedirectToAction("Index", "Home");
         }
 
 
         [HttpPost]
-        public ActionResult RecordList(int recordid)      
+        public ActionResult RecordList(int recordid)
         {
-            
-            
-            return RedirectToAction("Mark","Lecturer",new { @id=recordid});
+
+
+            return RedirectToAction("Mark", "Lecturer", new { @id = recordid });
         }
         [HttpGet]
         public ActionResult Mark(int id)      //the record detail and Lecturers are able to mark in this view
@@ -67,18 +75,32 @@ namespace OnlineMarking.Controllers
         [HttpPost]
         public ActionResult Mark(int ID, Record r)
         {     //submit the mark information
+
             if (!User.Identity.IsAuthenticated)              //user should login first
             {
                 return RedirectToAction("Login", "Account");
             }
-           
+            
             Record record = RecordDB.FindByID(r.ID);
             record.marks = r.marks;
             record.feedback = r.feedback;
+            ViewData["marks"] = marks;
+            /*if ((record.feedback==null)||(record.feedback.Length > 200) || (record.feedback.Length < 50))
+            {
+                ModelState.AddModelError("feedback", "Feedback should be a string with length between 50 and 200!");
+            }
+            if (record.marks==null)
+            {
+                ModelState.AddModelError("markNull", "Marks should not be null!");
+            }*/
+            if (!ModelState.IsValid) {
+                return View(r);
+            }
             RContext.Entry<Record>(record).State = EntityState.Modified;
             RContext.SaveChanges();
-            return RedirectToAction("RecordList","Lecturer");
+            return RedirectToAction("RecordList", "Lecturer");
         }
+
         public Boolean SorT()           //make sure the user is student or Lecturer
         {
             if (User.Identity.IsAuthenticated)
@@ -86,7 +108,7 @@ namespace OnlineMarking.Controllers
                 ApplicationDbContext context = new ApplicationDbContext();
                 var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
                 var role = UserManager.GetRoles(User.Identity.GetUserId());
-                if (role[0] == "Lecturer")
+                if (role[0] == "lecturer")
                 {
                     return true;
                 }

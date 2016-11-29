@@ -8,12 +8,13 @@ namespace OnlineMarking.Migrations
     using Microsoft.AspNet.Identity.EntityFramework;
     using Microsoft.AspNet.Identity;
 
+
     internal sealed class Configuration : DbMigrationsConfiguration<OnlineMarking.Models.ApplicationDbContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;
-           // AutomaticMigrationDataLossAllowed = true;
+            AutomaticMigrationDataLossAllowed = true;
             ContextKey = "OnlineMarking.Models.ApplicationDbContext";
         }
         protected override void Seed(OnlineMarking.Models.ApplicationDbContext context)
@@ -42,22 +43,23 @@ namespace OnlineMarking.Migrations
 
                 var newUser = new ApplicationUser()
                 {
-                    UserName = "studentOne",
+                    UserName = "studentOne@email.com",
                     Email = "studentOne@email.com",
                     EmailConfirmed = true
                 };
                 userManager.Create(newUser, "111111`qQ");
                 context.Roles.AddOrUpdate(x => x.Name, new IdentityRole { Name = "student" });
-                context.RecordDB.AddOrUpdate(i => i.filePath, new Record
+                /*context.RecordDB.AddOrUpdate(i => i.filePath, new Record
                 {
                     UserId = newUser.Id,
-                    studentName = "studentOne",
+                    studentName = "studentOne@email.com",
                     filePath = "studentRecord/"+newUser.UserName+"/Google.html",
                     fileName = "Google.html",
                     marks = "A",
-                    feedback = "very good"
-                });
-                context.SaveChanges();
+                    feedback = "For use in a Data Science application, we can use two different kinds of databases to store data, Relational database and NoSQL database. "
+                });*/
+                context.SaveChanges(); 
+               
                 userManager.AddToRole(newUser.Id, "student");
                 
             }
@@ -67,7 +69,7 @@ namespace OnlineMarking.Migrations
                 var userManager = new UserManager<ApplicationUser>(userStore);
                 var newUser = new ApplicationUser()
                 {
-                    UserName = "studentTwo",
+                    UserName = "studentTwo@email.com",
                     Email = "studentTwo@email.com",
                     EmailConfirmed = true
                 };
@@ -81,7 +83,7 @@ namespace OnlineMarking.Migrations
                 var userManager = new UserManager<ApplicationUser>(userStore);
                 var newUser = new ApplicationUser()
                 {
-                    UserName = "lecturer",
+                    UserName = "lecturer@email.com",
                     Email = "lecturer@email.com",
                     EmailConfirmed = true
                 };
