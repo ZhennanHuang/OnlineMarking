@@ -47,7 +47,7 @@ namespace OnlineMarking.Migrations
                     Email = "studentOne@email.com",
                     EmailConfirmed = true
                 };
-                userManager.Create(newUser, "111111`qQ");
+                userManager.Create(newUser, "111111.qQ");
                 context.Roles.AddOrUpdate(x => x.Name, new IdentityRole { Name = "student" });
                 /*context.RecordDB.AddOrUpdate(i => i.filePath, new Record
                 {
@@ -73,7 +73,7 @@ namespace OnlineMarking.Migrations
                     Email = "studentTwo@email.com",
                     EmailConfirmed = true
                 };
-                userManager.Create(newUser, "222222`qQ");
+                userManager.Create(newUser, "222222.qQ");
                 userManager.AddToRole(newUser.Id, "student");
                 
             }
@@ -87,7 +87,7 @@ namespace OnlineMarking.Migrations
                     Email = "lecturer@email.com",
                     EmailConfirmed = true
                 };
-                userManager.Create(newUser, "333333`qQ");
+                userManager.Create(newUser, "333333.qQ");
                 context.Roles.AddOrUpdate(x => x.Name, new IdentityRole { Name = "lecturer" });
                 context.SaveChanges();
                 userManager.AddToRole(newUser.Id, "lecturer");

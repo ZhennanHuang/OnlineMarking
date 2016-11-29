@@ -33,10 +33,6 @@ namespace OnlineMarking.Controllers
         public ActionResult Upload(Record r, HttpPostedFileBase file) {                     //submit the upload information
             if (User.Identity.IsAuthenticated)                                              //user should login first
             {
-                if (!Path.GetExtension(file.FileName).Equals("html")) {
-                    ModelState.AddModelError("type","Error file, you should upload a html file!");      //If the type of file is not html, return error message.
-                    return View();
-                }
                 if (SorT())                                                                 //if user is a student
                 {
                     if (file == null)
@@ -45,6 +41,11 @@ namespace OnlineMarking.Controllers
                     }
                     string dateTime = DateTime.Now.ToString("yyyyMMddHHmmss") + DateTime.Now.Millisecond.ToString();
                     var path = Path.Combine(Request.MapPath("~/studentRecord/" + User.Identity.Name + "/" + dateTime + "/"),Path.GetFileName(file.FileName));
+                    if (!file.ContentType.Equals("text/html"))
+                    {
+                        ModelState.AddModelError("type", "Error file, you should upload a html file!");      //If the type of file is not html, return error message.
+                        return View();
+                    }
                     using (var transaction = RContext.Database.BeginTransaction())                          //use transaction to guarantee database integrity.
                     {
                         try
@@ -62,6 +63,7 @@ namespace OnlineMarking.Controllers
                             r.filePath = path1;                                                                                             //when we need to find the file
                             RecordDB.Add(r);
                             RContext.SaveChanges();
+                            transaction.Commit();
                             return RedirectToAction("Result", "Student");
                         }
                         catch
@@ -92,8 +94,6 @@ namespace OnlineMarking.Controllers
             else
                 return RedirectToAction("Login", "Account");
         }
-        
-        
         [HttpPost]
         public ActionResult Detail(int recordID,Record r)                                       //return the view of Detail which student can see their html
         {     //submit the mark information

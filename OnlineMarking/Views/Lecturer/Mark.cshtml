@@ -30,7 +30,7 @@
             @Html.LabelFor(model => model.fileName)
         </td>
         <td>
-            @Html.TextBoxFor(model => model.fileName, new { @Value = Model.fileName, @Readonly = "true",@required="required"})
+            @Html.TextBoxFor(model => model.fileName, new { @Value = Model.fileName, @Readonly = "true"})
         </td>
     </tr>
     <tr>
@@ -61,6 +61,7 @@
     }
 </table>
 @Html.ValidationSummary(false,"", new { @class = "text-danger" })
+
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }

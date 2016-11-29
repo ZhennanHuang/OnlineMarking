@@ -1,32 +1,25 @@
-﻿.iframeOne {
+﻿.iframeOne {                        /*control the style of iframe*/
     margin-top:30px;
     margin-bottom:30px;
     width: 100%;
     height:400px;
 }
-.divD {
+.divD {                             /*control the style of div in RecordList and Result view*/
     margin-left:80px;
 }
-.thD {
+.thD {                              /*control the style of the th in table*/
     height:150px;
 }
-.TextD {
+.TextD {                            /*control the style of the textArea*/
     width:100%;
     height:100%;
     resize:none;
 }
-.textBox {
+.textBox {                          /*control the style of the textBox*/
     width:100%;
     height:100%;
 }
-.field-validation-error {
-    color:#f00;
-}
-.validation-summary-eroor {
-    color:#f00;
-    font-weight:bold;
-}
-input.upload {
+input.upload {                      /*control the style of the upload button*/
     font-size:15px;
     cursor:pointer;
     line-height:1.42857143;

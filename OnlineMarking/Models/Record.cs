@@ -24,7 +24,7 @@ namespace OnlineMarking.Models
         public string fileName { get; set; }
         [Required]
         public string marks { get; set; }
-        [StringLength(200, MinimumLength = 50)]
+        [StringLength(200,MinimumLength =50)]
         public string feedback { get; set; }  
         public virtual ApplicationUser User { get; set; }
     }

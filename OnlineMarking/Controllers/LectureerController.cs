@@ -51,14 +51,14 @@ namespace OnlineMarking.Controllers
 
 
         [HttpPost]
-        public ActionResult RecordList(int recordid)
+        public ActionResult RecordList(int recordid)                                    
         {
             return RedirectToAction("Mark", "Lecturer", new { @id = recordid });
         }
         [HttpGet]
-        public ActionResult Mark(int id)                                                //the record detail and Lecturers are able to mark in this view
+        public ActionResult Mark(int id)                                                //the record detail and Lecturers are able to mark in this view.
         {
-            var marks = new List<SelectListItem>()                                      //A List of grades, which will generate a dropdownlist
+            var marks = new List<SelectListItem>()                                      //A List of grades, which will generate a dropdownlist.
             {
                 (new SelectListItem() {Text = "A", Value = "A", Selected = false}),
                 (new SelectListItem() {Text = "B", Value = "B", Selected = false}),
@@ -71,10 +71,10 @@ namespace OnlineMarking.Controllers
             return View(r);
         }
         [HttpPost]
-        public ActionResult Mark(int ID, Record r)
-        {     //submit the mark information
+        public ActionResult Mark(int ID, Record r)                                      //process record which is modified by lecturer.
+        {     
 
-            if (!User.Identity.IsAuthenticated)                                         //user should login first
+            if (!User.Identity.IsAuthenticated)                                         //user should login first.
             {
                 return RedirectToAction("Login", "Account");
             }
@@ -84,6 +84,8 @@ namespace OnlineMarking.Controllers
             record.feedback = r.feedback;
             ViewData["marks"] = marks;
             if (!ModelState.IsValid) {
+                if (record.feedback == null)
+                    ModelState.AddModelError("feedback", "feedback cannot be null.");
                 return View(record);
             }
             RContext.Entry<Record>(record).State = EntityState.Modified;
@@ -91,7 +93,7 @@ namespace OnlineMarking.Controllers
             return RedirectToAction("RecordList", "Lecturer");
         }
 
-        public Boolean SorT()                                   //make sure the user is student or Lecturer
+        public Boolean SorT()                                                           //make sure the user is student or Lecturer
         {
             if (User.Identity.IsAuthenticated)
             {
