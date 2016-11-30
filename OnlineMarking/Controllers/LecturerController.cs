@@ -41,7 +41,7 @@ namespace OnlineMarking.Controllers
             {
                 Record[] rr;
                 if (!SorT())
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Result", "Student");
                 rr = RecordDB.ToArray();
                 return View(rr);
             }
@@ -86,6 +86,10 @@ namespace OnlineMarking.Controllers
             if (!ModelState.IsValid) {
                 if (record.feedback == null)
                     ModelState.AddModelError("feedback", "feedback cannot be null.");
+                return View(record);
+            }
+            if (record.feedback == null) { 
+                ModelState.AddModelError("feedback", "feedback cannot be null.");
                 return View(record);
             }
             RContext.Entry<Record>(record).State = EntityState.Modified;

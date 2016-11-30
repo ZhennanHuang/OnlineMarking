@@ -24,8 +24,14 @@ namespace OnlineMarking.Controllers
         // GET: Student
         public ActionResult Upload()                                                        //visit the upload view
         {
-            if (User.Identity.IsAuthenticated)                                              //user should login before visit upload view
+            if (User.Identity.IsAuthenticated)                                            //user should login before visit upload view
+            {
+                if (!SorT()) {
+                    return RedirectToAction("RecordList", "Lecturer");
+                }
                 return View();
+            }
+            
             else
                 return RedirectToAction("Login","Account");
         }
