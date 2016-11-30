@@ -16,14 +16,14 @@ namespace OnlineMarking.Controllers
         private ApplicationDbContext RContext;
         private DbSet<Record> RecordDB;
         private Record[] Records;
-        List<SelectListItem> marks = new List<SelectListItem>() //List<string> marks=new List<string>() { "A", "B", "C", "D", "F" };
-                {
-                    (new SelectListItem() {Text = "A", Value = "A", Selected = false}),
-                    (new SelectListItem() {Text = "B", Value = "B", Selected = false}),
-                    (new SelectListItem() {Text = "C", Value = "C", Selected = false}),
-                    (new SelectListItem() {Text = "D", Value = "D", Selected = false}),
-                    (new SelectListItem() {Text = "F", Value = "F", Selected = false})
-                };
+        List<SelectListItem> marks = new List<SelectListItem>()
+        { //DropDownList to select a grade
+            (new SelectListItem() {Text = "A", Value = "A", Selected = false}),
+            (new SelectListItem() {Text = "B", Value = "B", Selected = false}),
+            (new SelectListItem() {Text = "C", Value = "C", Selected = false}),
+            (new SelectListItem() {Text = "D", Value = "D", Selected = false}),
+            (new SelectListItem() {Text = "F", Value = "F", Selected = false})
+        };// in LecturerController.cs
         public LecturerController()
         {
             RContext = new Models.ApplicationDbContext();
@@ -35,14 +35,14 @@ namespace OnlineMarking.Controllers
         {
             return View();
         }
-        public ActionResult RecordList() {                  //view all the record that uploaded by students
-
+        public ActionResult RecordList()
+        {     //view all the record that uploaded by students             
             if (User.Identity.IsAuthenticated)
             {
                 Record[] rr;
-                if (!SorT())
+                if (SorT()) //if the user is a student
                     return RedirectToAction("Result", "Student");
-                rr = RecordDB.ToArray();
+                rr = RecordDB.ToArray(); 
                 return View(rr);
             }
             else
@@ -71,10 +71,10 @@ namespace OnlineMarking.Controllers
             return View(r);
         }
         [HttpPost]
-        public ActionResult Mark(int ID, Record r)                                      //process record which is modified by lecturer.
+        public ActionResult Mark(int ID, Record r) //process record which is marked by lecturer.
         {     
 
-            if (!User.Identity.IsAuthenticated)                                         //user should login first.
+            if (!User.Identity.IsAuthenticated) //user should login first.
             {
                 return RedirectToAction("Login", "Account");
             }
@@ -83,16 +83,17 @@ namespace OnlineMarking.Controllers
             record.marks = r.marks;
             record.feedback = r.feedback;
             ViewData["marks"] = marks;
-            if (!ModelState.IsValid) {
+            if (!ModelState.IsValid) {              //if both of the marks textbox and feedback textare are empty.
                 if (record.feedback == null)
                     ModelState.AddModelError("feedback", "feedback cannot be null.");
                 return View(record);
             }
-            if (record.feedback == null) { 
+            if (record.feedback == null)
+            {                                   //if the marksfeedback textare are empty.
                 ModelState.AddModelError("feedback", "feedback cannot be null.");
                 return View(record);
             }
-            RContext.Entry<Record>(record).State = EntityState.Modified;
+            RContext.Entry<Record>(record).State = EntityState.Modified;    //update the record
             RContext.SaveChanges();
             return RedirectToAction("RecordList", "Lecturer");
         }
@@ -104,7 +105,7 @@ namespace OnlineMarking.Controllers
                 ApplicationDbContext context = new ApplicationDbContext();
                 var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
                 var role = UserManager.GetRoles(User.Identity.GetUserId());
-                if (role[0] == "lecturer")
+                if (role[0] == "student")
                 {
                     return true;
                 }

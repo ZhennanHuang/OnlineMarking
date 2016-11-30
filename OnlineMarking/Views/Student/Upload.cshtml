@@ -10,7 +10,7 @@
     @using (Html.BeginForm("Upload", "Student", FormMethod.Post, new { enctype = "multipart/form-data" }))
     {
         <tr>
-            <td>
+            <td>        <!--in Upload view.-->
                 <input id="file" name="file" type="file" accept="text/html" required="required" class="upload" />
             </td>
         </tr>
@@ -22,7 +22,7 @@
     }
     @if (ViewData.ModelState["type"]!= null) {
         <tr><td>@Html.ValidationMessage("type",new { @class = "text-danger" })</td></tr>
-    }
+    }   <!--in Upload.cshtml-->
 </table>
 
 

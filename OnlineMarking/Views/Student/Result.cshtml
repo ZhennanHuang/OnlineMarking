@@ -6,29 +6,22 @@
 <div style="margin-top:50px;margin-bottom:50px;">
     <div><h2>Student Upload List</h2></div>
     <div><h4>The List of records you have submitted.</h4></div>
-    <table class="table">
+    <table class="table">   <!--in ResultList view, which students can see their submission-->
         <tr><th><h3>student</h3></th><th><h3>fileName</h3></th><th><h3>mark</h3></th></tr>
         @foreach (var r in @Model)
         {
             <tr>
                 <td>@r.studentName</td>
                 <td>@r.fileName</td>
-            @if (r.marks == "Waiting")
-            {
-                    <td> No Result </td>
-            }
-            else
-            {
-                    <td>  @r.marks </td>
-            }
-                <td>
-                    @using (Html.BeginForm("Detail", "Student", FormMethod.Post, new { enctype = "multipart/form-data" }))
-                    {
-                        <input type="hidden" id="recordid" name="recordid" value="@r.ID" />
-                        <input id="button" type="submit" value="Detail" />
-                    }
-                </td>
+                <td>  @r.marks </td>
+            <td>
+                @using (Html.BeginForm("Detail", "Student", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                    <input type="hidden" id="recordid" name="recordid" value="@r.ID" />
+                    <input id="button" type="submit" value="Detail" />
+                }
+            </td>
             </tr>
             }
-</table>
+    </table>
 </div>

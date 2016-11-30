@@ -31,16 +31,12 @@ namespace OnlineMarking.Models
     public static class MyExtensionMethods
     {
         public static Record[] FindByUserId(this IEnumerable<Record> record, string UserId)
-        {
-            if (UserId != null)
-                return (from r in record where r.UserId.Equals(UserId) select r).ToArray();
-            return null;
-        }
+        {               //Find record by userId
+            return (from r in record where r.UserId.Equals(UserId) select r).ToArray();
+        }               // in /Models/Record.cs
         public static Record FindByID(this IEnumerable<Record> record, int id)
-        {
-            if(id != 0)
-                return (from r in record where (r.ID == id) select r).First();
-            return null;
+        {               //Find record by recordid
+            return (from r in record where (r.ID == id) select r).First();
         }
     }
 }

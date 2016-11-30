@@ -45,19 +45,11 @@ namespace OnlineMarking.Migrations
                 {
                     UserName = "studentOne@email.com",
                     Email = "studentOne@email.com",
-                    EmailConfirmed = true
+                    EmailConfirmed = true,
+                    recordSum = 0
                 };
                 userManager.Create(newUser, "111111.qQ");
                 context.Roles.AddOrUpdate(x => x.Name, new IdentityRole { Name = "student" });
-                /*context.RecordDB.AddOrUpdate(i => i.filePath, new Record
-                {
-                    UserId = newUser.Id,
-                    studentName = "studentOne@email.com",
-                    filePath = "studentRecord/"+newUser.UserName+"/Google.html",
-                    fileName = "Google.html",
-                    marks = "A",
-                    feedback = "For use in a Data Science application, we can use two different kinds of databases to store data, Relational database and NoSQL database. "
-                });*/
                 context.SaveChanges(); 
                
                 userManager.AddToRole(newUser.Id, "student");
@@ -71,7 +63,8 @@ namespace OnlineMarking.Migrations
                 {
                     UserName = "studentTwo@email.com",
                     Email = "studentTwo@email.com",
-                    EmailConfirmed = true
+                    EmailConfirmed = true,
+                    recordSum = 0
                 };
                 userManager.Create(newUser, "222222.qQ");
                 userManager.AddToRole(newUser.Id, "student");
