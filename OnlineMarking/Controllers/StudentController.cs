@@ -54,8 +54,8 @@ namespace OnlineMarking.Controllers
                     using (var transaction = RContext.Database.BeginTransaction()) //use transaction to guarantee database integrity.
                     {
                         try
-                        {   //in StudentController.cs
-                            if (Directory.Exists(Server.MapPath("~/studentRecord/" + User.Identity.Name + "/" + dateTime)) == false)        
+                        {
+                            if (Directory.Exists(Server.MapPath("~/studentRecord/" + User.Identity.Name + "/" + dateTime)) == false)
                             {       //if there is not the floder create a new floder
                                 Directory.CreateDirectory(Server.MapPath("~/studentRecord/" + User.Identity.Name + "/" + dateTime));
                             }
@@ -64,22 +64,21 @@ namespace OnlineMarking.Controllers
                             var manager = new UserManager<ApplicationUser>(store);
                             var user = manager.FindById(User.Identity.GetUserId());
                             user.recordSum = user.recordSum + 1;
-                            manager.UpdateAsync(user);              //Update the user in database
+                            manager.Update(user);              //Update the user in database
                             r.fileName = file.FileName;
                             r.studentName = User.Identity.Name; //
                             r.UserId = User.Identity.GetUserId();
                             r.marks = "Waiting";
-                            var path1 = "studentRecord/" + User.Identity.Name + "/" + dateTime + "/" + Path.GetFileName(file.FileName);      
+                            var path1 = "studentRecord/" + User.Identity.Name + "/" + dateTime + "/" + Path.GetFileName(file.FileName);
                             r.filePath = path1;                               //Path1 will be stored into database and it will be used                                                   
                             RecordDB.Add(r);                                  //when we need to find the file
                             RContext.SaveChanges();
                             transaction.Commit();   // database transcation
                             return RedirectToAction("Result", "Student");
                         }
-                        catch
-                        {
-                            transaction.Rollback();
-                        }
+                        catch { transaction.Rollback();  }
+                            
+                        
                     }
                     return View();
 
